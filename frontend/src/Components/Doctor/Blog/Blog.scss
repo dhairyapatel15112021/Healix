@@ -1,0 +1,211 @@
+:root {
+    --textColor: #163020;
+    --backgroundColor: #EEF0E5;
+    --cardBgColor: #B6C4B6;
+}
+
+[data-theme='dark'] {
+    --textColor: #EEF0E5;
+    --backgroundColor: #163020;
+    --cardBgColor: #304D30;
+}
+
+.blogDiv {
+    display: flex;
+
+    .blog {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+
+        .blogText {
+            height: 5%;
+            width: 30%;
+            margin: 2.8%;
+            margin-left: 1.5%;
+            font-size: 2.5vmax;
+            color: var(--textColor);
+            text-shadow: 0 0 2px var(--textColor);
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+        }
+
+        .uploadAndHistory {
+            display: flex;
+            height: 84.5%;
+            width: 100%;
+
+            .uploadDiv {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+                width: 44%;
+                margin: 0% 3%;
+                color: var(--textColor);
+                .uploadText {
+                    height: 5%;
+                    width: 100%;
+                    margin: 2.8% 0%;
+                    font-size: 2vmax;
+                    color: var(--textColor);
+                    text-shadow: 0 0 2px var(--textColor);
+                    font-family: 'Poppins', sans-serif;
+                    font-weight: 400;
+                }
+
+                .uploadContentDiv {
+                    height: 90%;
+                    width: 100%;
+                    margin: 2.8% 0%;
+
+                    .blogInput {
+                        color: var(--backgroundColor);
+                        background-color: var(--textColor);
+                        border: none;
+                        border-radius: 5px;
+                        margin-left: 2%;
+                        margin-right: 2%;
+                        margin-top: 2%;
+                        padding-left: 3%;
+                        font-size: 1.2vmax;
+                        font-family: 'Playfair Display', serif;
+                        letter-spacing: 0.02vmax;
+
+                        &:focus {
+                            outline: none;
+                        }
+                    }
+                    .titleInput{
+                        height: 10%;
+                        width: 80%;
+                    }
+
+                    .descriptionInput{
+                        height: 30%;
+                        width: 80%;
+                    }
+                    .blogSelectInput{
+                        height: 10%;
+                        width: 83.5%;
+                    }
+
+                    ::placeholder {
+                        color: var(--backgroundColor);
+                        padding-left: 3%;
+                        font-family: 'Playfair Display', serif;
+                        font-size: 1.2vmax;
+                        letter-spacing: 0.02vmax;
+                    }
+
+                    .setDateDiv{
+                        height: 10%;
+                        width: 77.5%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        margin-left: 2%;
+                        margin-right: 2%;
+                        margin-top: 2%;
+                        padding-left: 3%;
+                        padding-right: 3%;
+                        border-radius: 5px;
+                        color: var(--backgroundColor);
+                        background-color: var(--textColor);
+                        font-family: 'Playfair Display', serif;
+                        .setDateText{
+                            font-size: 1.2vmax;
+                        }
+                    }
+                    .uploadButton{
+                        border: 1px solid var(--backgroundColor);
+                        background-color:var(--textColor) ;
+                        color: var(--backgroundColor);
+                        padding: 2%;
+                        margin-left: 66%;
+                        margin-top: 3%;
+                        border: none;
+                        border-radius: 20px;
+                        font-size: 1.2vmax;
+                        font-family: 'Poppins', sans-serif;
+                        letter-spacing: 0.2vmax;
+                        &:hover {
+                            background-color: var(--backgroundColor);
+                            color: var(--textColor);
+                            cursor: pointer;
+                            border: 1px solid var(--textColor);
+                        }
+
+                    }
+                }
+            }
+            .errorDiv{
+            color: red;
+            border-radius: 20px;
+            // height: 6%;
+            padding: 1.5%;
+            position: absolute;
+            top: 74%;
+            left: 3%;
+            font-size: 0.95vmax;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
+            }
+        }
+    }
+}
+@media only screen and (max-width:600px){
+    .blogDiv{
+        .blog{
+            .blogText{
+                margin-top: 8%;
+                margin-left: 3%;
+                font-size: 3vmax;
+            }
+            .uploadAndHistory{
+                flex-direction: column;
+                .uploadDiv{
+                    width: 100%;
+                    height: 50%;
+                    .uploadText{
+                        font-size: 2.2vmax;
+                    }
+                    .uploadContentDiv{
+                        height: 100%;
+
+                        .blogInput{
+                            font-size: 1.4vmax;
+                            width: 85%;
+                            height: 15%;
+                        }
+                        .descriptionInput{
+                            height: 30%;
+                        }
+
+                        .blogSelectInput{
+                            width: 88.2%;
+                        }
+
+                        ::placeholder{
+                            font-size: 1.4vmax;
+                        }
+
+                        .setDateDiv{
+                            width: 82%;
+                            height: 15%;
+                            .setDateText{
+                                font-size: 1.4vmax;
+                            }
+                        }
+
+                        .uploadButton{
+                            font-size: 1.4vmax;
+                            margin-left: 70%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

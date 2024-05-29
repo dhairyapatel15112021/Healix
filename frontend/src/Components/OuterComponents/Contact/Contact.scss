@@ -1,0 +1,289 @@
+:root {
+    --textColor: #163020;
+    --backgroundColor: #EEF0E5;
+    --specialWords: #304D30;
+}
+
+[data-theme='dark'] {
+    --textColor: #EEF0E5;
+    --backgroundColor: #163020;
+    --specialWords: #B6C4B6;
+}
+
+.contact {
+    padding-top: 10vh;
+    width: 100vw;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    .getInTouch {
+        width: 23vw;
+        height: 10vh;
+        color: var(--textColor);
+        margin-top: 5vh;
+        margin-left: 10vw;
+        font-size: 4vmax;
+        font-family: 'Playfair Display', serif;
+        border-bottom: 2px solid var(--textColor);
+        text-shadow: 0 0 2px var(--textColor);
+    }
+
+    .contactContent {
+        height: 10vh;
+        width: 90vw;
+        color: var(--textColor);
+        margin-left: 10vw;
+        margin-top: 2vh;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 300;
+
+        .specialWordsDiv {
+            font-size: 2vmax;
+            letter-spacing: 0.01vmax;
+
+            .specialWords {
+                color: var(--specialWords);
+                font-weight: bold;
+                font-family: 'Playfair Display', serif;
+                letter-spacing: 0.04vmax;
+            }
+        }
+
+        .contentParagraph {
+            font-size: 1.2vmax;
+            margin-top: 1vh;
+        }
+    }
+
+    .informationAndForm {
+        height: 50vh;
+        width: 90vw;
+        margin-left: 10vw;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 2%;
+
+        .information {
+            width: 40%;
+            height: 100%;
+            border-radius: 10px;
+            color: var(--textColor);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.35vmax;
+            font-weight: 400;
+
+            .informationDiv {
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                margin-top: 3.33%;
+                margin-left: 10%;
+                width: 80%;
+                height: 10%;
+
+                .icon {
+                    height: 100%;
+                    width: 10%;
+                }
+
+                .informationContent {
+                    height: 100%;
+                    width: 70%;
+                }
+            }
+
+            button {
+                border: none;
+                height: 10%;
+                width: 20%;
+                background-color: var(--textColor);
+                border-radius: 20px;
+                margin-top: 3.33%;
+                margin-left: 35%;
+
+                &:hover {
+                    background-color: var(--backgroundColor);
+                    border: 1px solid var(--textColor);
+
+                    .link {
+                        color: var(--textColor);
+                    }
+                }
+
+                .link {
+                    text-decoration: none;
+                    color: var(--backgroundColor);
+                    font-size: 1.2vmax;
+                }
+            }
+
+            .thankYouNote {
+                height: 20%;
+                width: 90%;
+                text-align: center;
+                font-family: 'Playfair Display', serif;
+                margin-top: 3.33%;
+                font-size: 1.5vmax;
+
+                .specialWords {
+                    font-weight: 600;
+                    border-bottom: 1px solid var(--textColor);
+                }
+            }
+        }
+
+        .form {
+            width: 40%;
+            height: 100%;
+            margin-right: 10%;
+            border-radius: 10px;
+            background-color: var(--textColor);
+            color: var(--backgroundColor);
+            font-family: 'Poppins', sans-serif;
+
+            .fillText {
+                height: 10%;
+                width: 90%;
+                font-size: 3vmax;
+                margin: 2%;
+                margin-left: 5%;
+            }
+
+            .contactDirectly {
+                height: 10%;
+                width: 90%;
+                font-size: 2.5vmax;
+                font-weight: 300;
+                margin: 2%;
+                margin-left: 5%;
+            }
+
+            .input {
+                border: none;
+                color: var(--textColor);
+                background-color: var(--backgroundColor);
+                height: 10%;
+                width: 85%;
+                margin-left: 5%;
+                margin-top: 2%;
+                border-radius: 5px;
+                font-size: 1.2vmax;
+                padding-left: 3%;
+                font-family: 'Playfair Display', serif;
+
+                &:focus {
+                    outline: none;
+                }
+            }
+
+            ::placeholder {
+                color: var(--textColor);
+                font-family: 'Playfair Display', serif;
+                font-size: 1.2vmax;
+                padding-left: 3%;
+            }
+
+            .submitButton {
+                border: none;
+                height: 10%;
+                width: 34%;
+                background-color: var(--backgroundColor);
+                color: var(--textColor);
+                border-radius: 20px;
+                padding: 1%;
+                font-size: 1.2vmax;
+                font-family: 'Poppins', sans-serif;
+                margin-left: 60%;
+                margin-top: 2.5%;
+
+                &:hover {
+                    background-color: var(--textColor);
+                    color: var(--backgroundColor);
+                    cursor: pointer;
+                    border: 1px solid var(--backgroundColor);
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width:600px) {
+    .contact {
+        padding-top: 15vh;
+        height: 86vh;
+        justify-content: flex-start;
+
+        .getInTouch {
+            width: 63vw;
+            height: 6.5vh;
+            margin-top: 0;
+            font-size: 5vmax;
+            margin-left: 5vw;
+        }
+
+        .contactContent {
+            height: 10vh;
+            width: 95vw;
+            margin-top: 1.5vh;
+            margin-left: 5vw;
+
+            .specialWordsDiv {
+                font-size: 2.02vmax;
+            }
+
+            .contentParagraph {
+                font-size: 1.4vmax;
+            }
+        }
+
+        .informationAndForm {
+            flex-direction: column;
+            height: 100%;
+
+            .information {
+                width: 100%;
+                font-size: 1.6vmax;
+
+                button {
+                    height: 15%;
+                    width: 25%;
+                    margin-top: 5%;
+
+                    .link {
+                        font-size: 1.7vmax;
+                    }
+                }
+
+                .thankYouNote {
+                    margin-top: 4%;
+                    font-size: 1.7vmax;
+                }
+            }
+
+            .form {
+                width: 90%;
+                margin-top: 6%;
+
+                .input {
+                    font-size: 1.5vmax;
+                }
+
+                ::placeholder {
+                    font-size: 1.5vmax;
+                }
+
+                .submitButton {
+                    font-size: 1.4vmax;
+                }
+            }
+        }
+    }
+}

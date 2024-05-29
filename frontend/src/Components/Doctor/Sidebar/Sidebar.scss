@@ -1,0 +1,148 @@
+:root {
+    --textColor: #163020;
+    --backgroundColor: #EEF0E5;
+    --logoURL: url("../../../Assets/Healix_Dark.svg");
+}
+
+[data-theme='dark'] {
+    --logoURL: url("../../../Assets/Healix_Light.svg");
+    --textColor: #EEF0E5;
+    --backgroundColor: #163020;
+}
+.sidebarDiv {
+    height: 100vh;
+    width: 15vw;
+    transition: all 0.5s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .sidebar {
+        height: 96%;
+        width: 96%;
+        margin: 1%;
+        border-radius: 10px;
+        background-color: var(--textColor);
+        color: var(--backgroundColor);
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-direction: column;
+
+        .healixAndIcon {
+            width: 100%;
+            height: 10%;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            text-align: center;
+
+            .healix {
+                height: 60%;
+                width: 70%;
+                font-family: 'Playfair Display', serif;
+                font-weight: 400;
+                font-size: 2.5vmax;
+                text-shadow: 0 0 2px var(--backgroundColor);
+            }
+
+            .bars {
+                width: 30%;
+                height: 60%;
+                font-size: 2vmax;
+                margin-top: 10%;
+            }
+
+            .highWidth{
+                width: 100%;
+            }
+        }
+
+        .sidebarLinkDiv {
+            height: 35%;
+            width: 100%;
+            margin-top: 10%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+
+            .sidebarItems {
+                color: var(--backgroundColor);
+                width: 100%;
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                font-size: 1.4vmax;
+                font-family: 'Poppins', sans-serif;
+                font-weight: 300;
+                .sidebarIcon{
+                    width: 13%;
+                    height: 100%;
+                }
+                .highWidth{
+                    width: 40%;
+                }
+                .sidebarText{
+                    width: 75%;
+                    height: 100%;
+                }
+            }
+        }
+
+        .logoutDiv {
+            // margin-top: 260%;
+            margin-top: 4%;
+            color: var(--backgroundColor);
+            width: 100%;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            font-size: 1.4vmax;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
+            cursor: pointer;
+            .sidebarIcon{
+                width: 13%;
+                height: 100%;
+            }
+            .highWidth{
+                width: 40%;
+                margin-top: 40%;
+            }
+            .sidebarText{
+                width: 75%;
+                height: 100%;
+            }
+        }
+    }
+}
+@media only screen and (max-width:600px){
+    .sidebarDiv{
+        .sidebar{
+            .healixAndIcon{
+                .bars{
+                    width: 80%;
+                    font-size: 2.5vmax;
+                }
+            }
+            .sidebarLinkDiv{
+                .sidebarItems{
+                    font-size: 2vmax;
+                    .sidebarIcon{
+                        width: 50%;
+                    }
+                }
+            }
+            .logoutDiv{
+                font-size: 2vmax;
+                margin-top: 20%;
+                .sidebarIcon{
+                    width: 50%;
+                }
+            }
+        }
+    }
+}

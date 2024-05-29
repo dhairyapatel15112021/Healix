@@ -1,0 +1,31 @@
+:root {
+    --textColor: #163020;
+    --backgroundColor: #EEF0E5;
+}
+
+[data-theme='dark'] {
+    --textColor: #EEF0E5;
+    --backgroundColor: #163020;
+}
+
+.scrollToTopButton{
+    position: fixed;
+    top: 90%;
+    left: 93%;
+    height: 4vmax;
+    width: 4vmax;
+    border-radius: 4vmax;
+    border: none;
+    box-shadow:var(--textColor) 0px 0px 4px;
+    background-color: var(--textColor);
+    .scrollToTopIcon{
+        color: var(--backgroundColor);
+        font-size: 2vmax;
+    }
+    &:hover{
+        background-color: var(--backgroundColor);
+        .scrollToTopIcon{
+            color: var(--textColor);
+        }
+    }
+}

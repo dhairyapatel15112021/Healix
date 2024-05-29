@@ -1,0 +1,70 @@
+:root {
+  --textColor: #163020;
+  --backgroundColor: #EEF0E5;
+  --cardBgColor: #B6C4B6;
+}
+
+[data-theme='dark'] {
+  --textColor: #EEF0E5;
+  --cardBgColor: #304D30;
+  --backgroundColor: #163020;
+}
+
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0px 0;
+    justify-content: center;
+    cursor: pointer;
+    height: 45%;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+}
+  
+.pagination li {
+    margin: 0 5px;
+}
+  
+.pagination a {
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: 1px solid var(--textColor);
+    color: var(--textColor);
+    text-decoration: none;
+   
+}
+  
+  
+.pagination a:hover {
+    background-color: var(--backgroundColor);
+}
+  
+  
+.pagination .active a {
+    background-color: var(--textColor);
+    color: var(--backgroundColor);
+    pointer-events: none; /* Disable clicks on the active page */
+}
+  
+.pagination .disabled a {
+    visibility: hidden;
+    /* color: rgb(198, 197, 202);
+    border: 1px solid rgb(198, 197, 202);
+    pointer-events: none;  */
+    /* Disable clicks on disabled pages */
+    /* display: none; */
+}
+.pagination .active {
+    display: flex;
+    align-items: center;
+}
+
+@media only screen and (max-width:600px){
+  .pagination{
+    height: 29%;
+    font-size: 1.3vmax;
+    margin-top: 5%;
+  }
+}
+  

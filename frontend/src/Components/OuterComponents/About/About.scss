@@ -1,0 +1,304 @@
+:root {
+    --textColor: #163020;
+    --backgroundColor: #EEF0E5;
+}
+
+[data-theme='dark'] {
+    --textColor: #EEF0E5;
+    --backgroundColor: #163020;
+}
+
+.about {
+    padding-top: 10vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+    width: 100vw;
+    .introduction {
+        height: 10vh;
+        width: 80vw;
+        border-radius: 10px;
+        background-color: var(--textColor);
+        color: var(--backgroundColor);
+        font-family: 'Playfair Display', serif;
+        font-weight: 400;
+        letter-spacing: 0.1vmax;
+        display: flex;
+        align-items: center;   
+        text-align: center;
+        font-size: 1.25vmax;
+    }
+    .card{
+        height: 70vh;
+        width: 75vw;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-around;
+        margin-left: 15vw;
+        .ourStory{
+            position: relative;
+            height: 70vh;
+            width: 20vw;
+            .firstLine{
+                height: 8vh;
+                width: 0.1vw;
+                background-color: var(--textColor);
+            }
+            p{
+                position: absolute;
+                top: 7%;
+                left: -20%;
+                font-size: 2vmax;
+                color: var(--textColor);
+                font-family: 'Playfair Display', serif;
+                font-weight:600;
+                text-shadow: 0 0 2px var(--textColor);
+                letter-spacing: 0.05vmax;
+            }
+            .storyContent{
+                width: 25vw;
+                height: 20vh;
+                background-color: var(--textColor);
+                color: var(--backgroundColor);
+                border: 1px solid var(--backgroundColor);
+                border-radius: 10px;
+                position: absolute;
+                top: 22%;
+                left: -55%;
+                padding: 5%;
+                text-align: center;
+                font-family: 'Poppins', sans-serif;
+                font-weight: 300;
+                font-size: 1.2vmax;
+                &:hover{
+                    border: 1px solid var(--textColor);
+                    background-color: var(--backgroundColor);
+                    color: var(--textColor);
+                }
+            }
+        }
+        .ourValues{
+            position: relative;
+            height: 70vh;
+            width: 20vw;
+            .secondLine{
+                position: absolute;
+                left: 15%;
+                height: 41vh;
+                width: 0.11vw;
+                background-color: var(--textColor);
+            }
+            p{
+                position: absolute;
+                top: 55%;
+                left: -10%;
+                font-size: 2vmax;
+                color: var(--textColor);
+                font-family: 'Playfair Display', serif;
+                font-weight:600;
+                text-shadow: 0 0 2px var(--textColor);
+                letter-spacing: 0.05vmax;
+            }
+            .valueContent{
+                width: 25vw;
+                height: 20vh;
+                border-radius: 10px;
+                border: 1px solid var(--backgroundColor);
+                background-color: var(--textColor);
+                color: var(--backgroundColor);
+                position: absolute;
+                top: 70%;
+                left: -55%;
+                padding: 5%;
+                text-align: center;
+                font-family: 'Poppins', sans-serif;
+                font-weight: 300;
+                font-size: 1.17vmax;
+                &:hover{
+                    border: 1px solid var(--textColor);
+                    background-color: var(--backgroundColor);
+                    color: var(--textColor);
+                }
+            }
+        }
+        .ourMission{
+            position: relative;
+            height: 70vh;
+            width: 20vw;
+            .thirdLine{
+                height: 8vh;
+                width: 0.11vw;
+                background-color: var(--textColor);
+            }
+            p{
+                position: absolute;
+                top: 7%;
+                left: -20%;
+                font-size: 2vmax;
+                color: var(--textColor);
+                font-family: 'Playfair Display', serif;
+                font-weight:600;
+                text-shadow: 0 0 2px var(--textColor);
+                letter-spacing: 0.05vmax;
+            }
+            .missionContent{
+                width: 25vw;
+                height: 20vh;
+                border-radius: 10px;
+                border: 1px solid var(--backgroundColor);
+                background-color: var(--textColor);
+                color: var(--backgroundColor);
+                position: absolute;
+                top: 22%;
+                left: -55%;
+                padding: 5%;
+                text-align: center;
+                font-family: 'Poppins', sans-serif;
+                font-weight: 300;
+                font-size: 1.2vmax;
+                &:hover{
+                    border: 1px solid var(--textColor);
+                    background-color: var(--backgroundColor);
+                    color: var(--textColor);
+                }
+            }
+        }
+        .ourVision{
+            position: relative;
+            height: 70vh;
+            width: 20vw;
+            .fourthLine{
+                position: absolute;
+                left: 15%;
+                height: 41vh;
+                width: 0.11vw;
+                background-color: var(--textColor);
+            }
+            p{
+                position: absolute;
+                top: 55%;
+                left: -10%;
+                font-size: 2vmax;
+                color: var(--textColor);
+                font-family: 'Playfair Display', serif;
+                font-weight:600;
+                text-shadow: 0 0 2px var(--textColor);
+                letter-spacing: 0.05vmax;
+            }
+            .visionContent{
+                width: 25vw;
+                height: 20vh;
+                border-radius: 10px;
+                border: 1px solid var(--backgroundColor);
+                background-color: var(--textColor);
+                color: var(--backgroundColor);
+                position: absolute;
+                top: 70%;
+                left: -55%;
+                padding: 5%;
+                text-align: center;
+                font-family: 'Poppins', sans-serif;
+                font-weight: 300;
+                font-size: 1.17vmax;
+                &:hover{
+                    border: 1px solid var(--textColor);
+                    background-color: var(--backgroundColor);
+                    color: var(--textColor);
+                }
+            }
+        }
+    }
+}
+@media only screen and (max-width:600px){
+    .about{
+        padding-top: 12vh;
+        height: 88vh;
+        width: 96vw;
+        .introduction{
+            width: 90vw;
+            margin-left: 2vw;
+            font-size: 1.5vmax;
+        }
+        .card{
+            width: 88vw;
+            .ourStory{
+                .firstLine{
+                    position: absolute;
+                    left: 60%;
+                    width: 0.2vw;
+                }
+                p{
+                    top: 8%;
+                    left: 35%;
+                    font-size: 2.33vmax;
+                }
+                .storyContent{
+                    top: 21%;
+                    height: 18vh;
+                    width: 40vw;
+                    font-size: 1.3vmax;
+                    left: -34%;
+                }
+            }
+            .ourValues{
+                width: 24vw;
+                .secondLine{
+                    display: none;
+                }
+                p{
+                    left: -80%;
+                    top: 50%;
+                    font-size: 2.33vmax;
+                }
+                .valueContent{
+                    width: 40vw;
+                    font-size: 1.3vmax;
+                    height: 18vh;
+                    top: 60%;
+                    left: -110%;
+                }
+            }
+            .ourMission{
+                width: 24vw;
+                .thirdLine{
+                    position: absolute;
+                    left: 58%;
+                    width: 0.2vw;
+                }
+                p{
+                    top: 8%;
+                    left: 40%;
+                    font-size: 2.33vmax;
+                }
+                .missionContent{
+                    top: 21%;
+                    left: -10%;
+                    height: 18vh;
+                    width: 40vw;
+                    font-size: 1.3vmax;
+
+                }
+            }
+            .ourVision{
+                .fourthLine{
+                    display: none;
+                }
+                p{
+                    left: -80%;
+                    top: 50%;
+                    font-size: 2.33vmax;
+                }
+                .visionContent{
+                    width: 40vw;
+                    font-size: 1.3vmax;
+                    height: 18vh;
+                    top: 60%;
+                    left: -130%;
+                }
+            }
+        }
+    }
+}
+

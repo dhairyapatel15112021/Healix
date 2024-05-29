@@ -1,0 +1,203 @@
+:root {
+    --textColor: #163020;
+    --backgroundColor: #EEF0E5;
+    --specialWords: #304D30;
+    --errorBG : #ffffff;
+}
+
+[data-theme='dark'] {
+    --textColor: #EEF0E5;
+    --backgroundColor: #163020;
+    --specialWords: #B6C4B6;
+    --errorBG : "";
+}
+
+.signUpFormDiv {
+    padding-top: 10vh;
+    height: 75vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+    .signUpForm {
+        height: 75%;
+        width: 60%;
+        background-color: var(--textColor);
+        color: var(--backgroundColor);
+        border-radius: 10px;
+        position: relative; //  we make this div to position:relative to display our uploaded photo to our desirable location
+
+        .welcomeText {
+            height: 13%;
+            width: fit-content;
+            font-size: 3vmax;
+            font-weight: 400;
+            margin: 2%;
+            margin-left: 40%;
+            font-family: 'Playfair Display', serif;
+            border-bottom: 1px solid var(--backgroundColor);
+            letter-spacing: 0.02vmax;
+            text-shadow: 0 0 2px var(--backgroundColor);
+        }
+
+        .createAccountText {
+            height: 5%;
+            width: 90%;
+            font-size: 2vmax;
+            font-weight: 400;
+            margin: 2%;
+            margin-left: 2.5%;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .inputDiv {
+            display: grid;
+            grid-template-rows: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
+            height: 40%;
+            width: 100%;
+            row-gap: 3%;
+            column-gap: 3%;
+            margin-top: 3%;
+            .signUpInput {
+                color: var(--textColor);
+                background-color: var(--backgroundColor);
+                height: 80%;
+                width: 85%;
+                border: none;
+                border-radius: 5px;
+                margin-left: 5%;
+                margin-top: 2%;
+                padding-left: 3%;
+                font-size: 1.2vmax;
+                font-family: 'Playfair Display', serif;
+                letter-spacing: 0.02vmax;
+
+                &:focus {
+                    outline: none;
+                }
+            }
+            .signUpSelectInput{
+                width: 88%;
+                padding-left: 4.8%;
+            }
+            
+            .confirmPassword{
+                grid-area: 3 / 2 / 3 / 3;
+            }
+
+           
+            ::placeholder {
+                color: var(--textColor);
+                padding-left: 3%;
+                font-family: 'Playfair Display', serif;
+                font-size: 1.2vmax;
+                letter-spacing: 0.02vmax;
+            }
+            .error{
+                color: red;
+                background-color: var(--errorBG);
+                border-radius: 20px;
+                height: 5%;
+                padding: 1%;
+                position: absolute;
+                top: 62.5%;
+                left: 3%;
+                font-size: 1.1vmax;
+                font-family: 'Poppins', sans-serif;
+                font-weight: 300;
+            }
+
+        }
+        .logInCheck{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 5%;
+            width: 13vmax;
+            margin: 2% 0%;
+            margin-left: 73%;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.2vmax;
+            font-weight: 400;
+            .logInLinkDiv{
+                border-bottom: 1px solid var(--backgroundColor);
+                .logInLink{
+                    text-decoration: none;
+                    color: var(--backgroundColor);
+                    letter-spacing: 0.05vmax;  
+                }
+            }
+        }
+        .signUpButton{
+            background-color:var(--backgroundColor) ;
+            color: var(--textColor);
+            height: 10%;
+            width: 18%;
+            padding: 1%;
+            margin-left: 78%;
+            margin-top: 1%;
+            border: none;
+            border-radius: 20px;
+            font-size: 1.2vmax;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 0.2vmax;
+            &:hover {
+                background-color: var(--textColor);
+                color: var(--backgroundColor);
+                cursor: pointer;
+                border: 1px solid var(--backgroundColor);
+            }
+        }
+    }
+}
+
+@media only screen and (max-width:600px){
+    .signUpFormDiv{
+        padding-top: 14vh;
+        height: 71vh;
+        .signUpForm{
+            width: 90%;
+            height: 90%;
+            .welcomeText{
+                font-size: 4vmax;
+                margin: 3%;
+                margin-top: 5%;
+                margin-left: 5%;
+                height: 9%;
+            }
+            .createAccountText{
+                font-size: 2.8vmax;
+                margin-left: 5%;
+            }
+            .inputDiv{
+                height: 60%;
+                grid-template-rows: repeat(6,1fr);
+                grid-template-columns: repeat(1,1fr);
+                row-gap: 0.5%;
+                margin-top: 5%;
+                .signUpInput{
+                    font-size: 2vmax;
+                    margin-top: 1%;
+                }
+                ::placeholder{
+                    font-size: 2vmax;
+                }
+            }
+            .logInCheck{
+                margin: 1% 0%;
+                margin-left: 46%;
+                font-size: 1.9vmax;
+                width: 20vmax;
+            }
+            .signUpButton{
+                height: 7%;
+                width: 25%;
+                font-size: 2vmax;
+                margin-left: 68%;
+                margin-top: 2.5%;
+            }
+        }
+    }
+}

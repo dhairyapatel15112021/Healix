@@ -1,0 +1,125 @@
+:root{
+    --logoURL : url("../../../Assets/Healix_Dark.svg");
+    --textColor: #163020;
+    --backgroundColor: #EEF0E5;
+}
+[data-theme='dark']{
+    --logoURL : url("../../../Assets/Healix_Light.svg");
+    --textColor:#EEF0E5;
+    --backgroundColor:#163020;
+}
+.header{
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
+    height: 10vh;
+    width: 100vw;
+    background-color: var(--backgroundColor);
+    .logo{
+        background-image: var(--logoURL);
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 8vh;
+        width: 10vw;
+        justify-self: end;
+    }
+    .navbar{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        height: 8vh;
+        border-radius: 10px;
+        background-color: var(--textColor); 
+        padding: 0;
+        position: relative;
+        top: 1vh;
+        left: -2vw;
+            .line{
+                height: 4vh;
+                width: 0.15vw;
+                background-color: var(--textColor);
+                border: none;
+                position: absolute;
+                top: -3vh;
+            }
+            .start{
+                left: 10%;
+            }
+            .end{
+                left: 90%;
+            }
+            li{
+                list-style-type: none;
+                .link{
+                    text-decoration: none;
+                    color: var(--backgroundColor);
+                    font-family: 'Poppins', sans-serif;
+                    font-weight: 300;
+                    letter-spacing: 0.05vmax;
+                    font-size: 1.15vmax;
+                }
+                .active{
+                    padding-bottom: 3%;
+                    border-bottom: 1.2px solid var(--backgroundColor);
+                }
+            }
+            .logIn{
+                background-color: var(--backgroundColor);
+                border-radius: 5px;
+                padding: 1% 2%;
+                border: 1px solid var(--textColor);
+                .logInLink{
+                    text-decoration: none;
+                    color: var(--textColor);
+                    font-family: 'Poppins', sans-serif;
+                    font-weight: 300;
+                    letter-spacing: 0.05vmax;
+                    font-size: 1.15vmax;
+                    cursor: pointer;
+                }
+                &:hover{
+                    border: 1px solid var(--backgroundColor);
+                    background-color: var(--textColor);
+                    .logInLink{
+                        color: var(--backgroundColor);
+                    }
+                }
+            }
+    }
+}
+@media only screen and (max-width:600px){
+    .header{
+        height: 14vh;
+        .logo{
+            height: 8vh;
+            width: 20vw;
+            align-self: flex-start;
+        }
+        .navbar{
+            // width: 50vw;
+            height: 7vh;
+            left: -7vw;
+            align-self: flex-end;
+            .line{
+                height: 10vh;
+                top: -10vh;
+            }
+            li{
+            .link{
+                font-size: 1.8vmax;
+            }
+        }
+        .logIn{
+            position: absolute;
+            top: -70%;
+            background-color: var(--textColor);
+            .logInLink{
+                font-size: 2vmax;
+                color: var(--backgroundColor);
+            }
+        }
+        }
+    }
+}

@@ -1,0 +1,165 @@
+:root {
+    --textColor: #163020;
+    --backgroundColor: #EEF0E5;
+    --cardBgColor: #B6C4B6;
+    --boxShadow: rgba(0, 0, 0, 0.35)
+}
+
+[data-theme='dark'] {
+    --textColor: #EEF0E5;
+    --cardBgColor: #304D30;
+    --backgroundColor: #163020;
+    --boxShadow: #a8a8a8;
+}
+
+.blogs {
+    padding-top: 10vh;
+    width: 100vw;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden auto;
+
+    .blogsText {
+        height: 5%;
+        width: 97%;
+        margin-top: 2%;
+        margin-left: 3%;
+        color: var(--textColor);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Playfair Display', serif;
+        font-weight: 500;
+        font-size: 3vmax;
+        text-shadow: 0 0 2px var(--textColor);
+    }
+
+    .filterButtonsDiv {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 5%;
+        width: 98%;
+        margin: 2%;
+
+        .filterButton {
+            margin: 0% 2%;
+            background-color: var(--textColor);
+            border: 1px solid var(--backgroundColor);
+            color: var(--backgroundColor);
+            border-radius: 5px;
+            font-size: 1.2vmax;
+            font-weight: 300;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 0.1vmax;
+
+            &:hover {
+                color: var(--textColor);
+                background-color: var(--backgroundColor);
+                border: 1px solid var(--textColor);
+                cursor: pointer;
+            }
+        }
+    }
+
+    .noBlogs {
+        color: var(--textColor);
+        font-size: 2vmax;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 65%;
+        width: 100%;
+    }
+
+    .blogsContent {
+        width: 96%;
+        margin: 2%;
+        height: 100%;
+        margin-top: 4%;
+        display: grid;
+        grid-template-rows: repeat(3, 40%);
+        grid-template-columns: repeat(3, 31%);
+        grid-auto-rows: 40%;
+        row-gap: 5%;
+        column-gap: 2%;
+        align-items: center;
+        justify-content: center;
+
+        .blogsCard {
+            background-color: var(--textColor);
+            border: 1px solid var(--backgroundColor);
+            color: var(--backgroundColor);
+            width: 94%;
+            height: 94%;
+            border-radius: 10px;
+            padding: 3%;
+
+            &:hover {
+                background-color: var(--backgroundColor);
+                color: var(--textColor);
+                border: 1px solid var(--textColor);
+
+            }
+
+            .blogsHeader {
+                width: 100%;
+                height: 20%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                .doctorImage {
+                    height: 7vh;
+                    width: 7vh;
+                    border-radius: 7vh;
+                    object-fit: cover;
+                    object-position: center;
+                }
+
+                .NameAndDateDiv {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+
+                    .name {
+                        font-weight: bold;
+                        font-size: 1.2vmax;
+                    }
+
+                    .date {
+                        font-weight: 300;
+                        font-size: 1vmax;
+                    }
+                }
+
+                .category {
+                    font-size: 1.2vmax;
+                    font-weight: 300;
+                }
+            }
+
+            .blogsTitle {
+                height: 20%;
+                width: 100%;
+                margin: 2% 0%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.1vmax;
+                font-weight: bold;
+            }
+
+            .blogsDescription {
+                height: auto;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                font-weight: 300;
+                font-size: 1.1vmax;
+            }
+        }
+    }
+}

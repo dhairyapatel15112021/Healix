@@ -1,0 +1,193 @@
+:root {
+    --textColor: #163020;
+    --backgroundColor: #EEF0E5;
+    --specialWords: #304D30;
+    --errorBG : "";
+}
+
+[data-theme='dark'] {
+    --textColor: #EEF0E5;
+    --backgroundColor: #163020;
+    --specialWords: #B6C4B6;
+    --errorBG : #ffffff;
+}
+
+.logInFormDiv {
+    padding-top: 10vh;
+    height: 75vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .logInForm {
+        height: 60%;
+        width: 30%;
+        margin-left: 5%;
+        background-color: var(--textColor);
+        color: var(--backgroundColor);
+        border-radius: 10px;
+        position: relative;
+        .welcomeText {
+            height: 15%;
+            width: fit-content;
+            font-size: 3vmax;
+            font-weight: 400;
+            margin: 2%;
+            margin-left: 30%;
+            font-family: 'Playfair Display', serif;
+            border-bottom: 1px solid var(--backgroundColor);
+            letter-spacing: 0.02vmax;
+            text-shadow: 0 0 2px var(--backgroundColor);
+        }
+
+        .memberLogin {
+            height: 10%;
+            width: 90%;
+            font-size: 2vmax;
+            font-weight: 400;
+            margin: 2%;
+            margin-left: 5%;
+            margin-top: 5%;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .loginInput {
+            color: var(--textColor);
+            background-color: var(--backgroundColor);
+            height: 10%;
+            width: 85%;
+            border: none;
+            border-radius: 5px;
+            margin-left: 5%;
+            margin-top: 2%;
+            padding-left: 3%;
+            font-size: 1.2vmax;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 0.02vmax;
+
+            &:focus {
+                outline: none;
+            }
+
+        }
+
+        ::placeholder {
+            color: var(--textColor);
+            padding-left: 3%;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2vmax;
+            letter-spacing: 0.02vmax;
+        }
+        .checkboxDiv{
+            position: absolute;
+            top: 27%;
+            left: 69%;
+            display: flex;
+            align-items:center;
+            justify-content:space-between;
+            margin: 2%;
+            margin-left: 5%;
+            .checkbox{
+                outline: none;
+                &:focus {
+                    outline: none;
+                }
+            }
+            .checkboxText{
+                margin-left: 20%;
+            }
+        }
+
+        .signUpCheck{
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            height: 10%;
+            width: 65%;
+            margin: 5% 4%;
+            // margin-top: 8%;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.2vmax;
+            font-weight: 400;
+            .signUpLinkDiv{
+                border-bottom: 1px solid var(--backgroundColor);
+                .signUpLink{
+                    text-decoration: none;
+                    color: var(--backgroundColor);
+                    letter-spacing: 0.05vmax;     
+                }
+            }
+            
+        }
+        .loginButton{
+            background-color:var(--backgroundColor) ;
+            color: var(--textColor);
+            height: 10%;
+            width: 34%;
+            padding: 1%;
+            margin: 1%;
+            margin-left: 60%;
+            border: none;
+            border-radius: 20px;
+            font-size: 1.2vmax;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 0.2vmax;
+            &:hover {
+                background-color: var(--textColor);
+                color: var(--backgroundColor);
+                cursor: pointer;
+                border: 1px solid var(--backgroundColor);
+            }
+        }
+
+        .errorDiv{
+            color: red;
+            border-radius: 20px;
+            height: 6%;
+            padding: 1.5%;
+            position: absolute;
+            top: 85%;
+            left: 3%;
+            font-size: 0.95vmax;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
+        }
+    }
+}
+
+@media only screen and (max-width:600px){
+    .logInFormDiv{
+        padding-top: 14vh;
+        height: 71vh;
+        .logInForm{
+            width: 80%;
+            margin-left: 0;
+            .welcomeText{
+                font-size: 4vmax;
+                margin: 3%;
+                margin-top: 5%;
+                margin-left: 28%;
+                height: 13%;
+            }
+            .memberLogin{
+                font-size: 2.8vmax;
+            }
+            .loginInput{
+                font-size: 2vmax;
+                margin-top: 3%;
+            }
+            ::placeholder{
+                font-size: 2vmax;
+            }
+            .signUpCheck{
+                font-size: 1.8vmax;
+                width: 90%;
+            }
+            .loginButton{
+                font-size: 2vmax;
+                margin-top: 5%;
+            }
+        }
+    }
+}

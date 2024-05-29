@@ -1,0 +1,15 @@
+-> npm install express
+-> npm install mongoose
+-> npm install bcrypt
+-> npm install nodemailer
+-> npm install cors
+-> npm install dotenv
+-> npm install nodemon
+-> npm install jsonwebtoken
+-> npm install body-parser
+
+
+
+// Below Not Used
+-> npm install multer
+-> npm i multer-gridfs-storage --legacy-peer-deps

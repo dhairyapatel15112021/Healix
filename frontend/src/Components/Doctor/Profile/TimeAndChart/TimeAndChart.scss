@@ -1,0 +1,84 @@
+:root {
+    --textColor: #163020;
+    --backgroundColor: #EEF0E5;
+    --cardBgColor: #B6C4B6;
+}
+
+[data-theme='dark'] {
+    --textColor: #EEF0E5;
+    --backgroundColor: #163020;
+    --cardBgColor: #304D30;
+}
+
+
+.timeAndChartDiv {
+    height: 97.5%;
+    width: 97%;
+    margin: 0% 1%;
+    background-color: var(--cardBgColor);
+    border-radius: 10px;
+    box-shadow: var(--textColor) 0px 0px 4px;
+    display: flex;
+    flex-direction: column;
+    .timeDiv{
+        display: flex;
+        flex-direction: column;
+        height: 30%;
+        width: 96%;
+        padding: 2%;
+        .infoDateDiv{
+            color: var(--textColor);
+            font-size: 1.1vmax;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .timeButtonDiv {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 2%;
+            .timeButton {
+                background-color: var(--textColor);
+                color: var(--backgroundColor);
+                height: fit-content;
+                padding: 1%;
+                margin: 1%;
+                width: 14%;
+                border: 1px solid var(--textColor);
+                border-radius: 10px;
+                font-size: 1.1vmax;
+                font-family: 'Poppins', sans-serif;
+                letter-spacing: 0.1vmax;
+                font-weight: 300;
+    
+                &:hover {
+                    background-color: var(--cardBgColor);
+                    color: var(--textColor);
+                    cursor: pointer;
+                    border: 1px solid var(--textColor);
+                }
+            }
+        }
+    }   
+}
+
+@media only screen and (max-width:600px){
+    .timeAndChartDiv{
+        height: 151%;
+        .timeDiv{
+            height: 100%;
+            .infoDateDiv{
+                font-size: 1.3vmax;
+            }
+            .timeButtonDiv{
+                .timeButton{
+                    margin-top: 2%;
+                    width: 18%;
+                    height: calc(100% / 3.2);
+                }
+            }
+        }    
+    }
+}

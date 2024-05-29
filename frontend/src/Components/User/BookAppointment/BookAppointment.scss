@@ -1,0 +1,162 @@
+:root {
+    --textColor: #163020;
+    --backgroundColor: #EEF0E5;
+    --specialWords: #304D30;
+}
+
+[data-theme='dark'] {
+    --textColor: #EEF0E5;
+    --backgroundColor: #163020;
+    --specialWords: #B6C4B6;
+}
+
+.bookAppointmentDiv {
+    padding-top: 10vh;
+    width: 100vw;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Poppins', sans-serif;
+    color: var(--textColor);
+
+    .fillText {
+        margin-top: 3vh;
+        margin-left: 6.9vw;
+        font-size: 3.5vmax;
+        font-weight: 500;
+    }
+
+    .bookAppointmentText {
+        margin-left: 6.9vw;
+        font-size: 2vmax;
+        font-weight: 300;
+    }
+
+    .bookAppointmentForm {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        height: 70%;
+        margin-left: 5vw;
+        margin-right: 5vw;
+        width: 90vw;
+        // background-color: black;
+
+        .appointmentInput {
+            color: var(--backgroundColor);
+            background-color: var(--textColor);
+            border: none;
+            border-radius: 5px;
+            margin-left: 2%;
+            margin-right: 2%;
+            height: 13%;
+            width: 40%;
+            margin-top: 1.5%;
+            padding-left: 3%;
+            font-size: 1.3vmax;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 0.02vmax;
+
+            &:focus {
+                outline: none;
+            }
+        }
+        .appointmentSelectInput{
+            width: 43%;
+            font-size: 1.3vmax;
+        }
+
+        ::placeholder {
+            color: var(--backgroundColor);
+            padding-left: 1%;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3vmax;
+            letter-spacing: 0.02vmax;
+            
+        }
+        .selectDateDiv{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3vmax;
+            color: var(--backgroundColor);
+            background-color: var(--textColor);
+            border: none;
+            border-radius: 5px;
+            margin-left: 2%;
+            margin-right: 2%;
+            height: 13%;
+            width: 38%;
+            margin-top: 1.6%;
+            padding-left: 3%;
+            padding-right: 2%;
+        }
+        .bookButton{
+            background-color: var(--textColor);
+            color: var(--backgroundColor);
+            margin-top: 2%;
+            margin-left: 82%;
+            height: 10%;
+            width: 10%;
+            border: 1px solid var(--textColor);
+            border-radius: 30px;
+            font-size: 1.4vmax;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 0.1vmax;
+
+            &:hover {
+                background-color: var(--backgroundColor);
+                color: var(--textColor);
+                cursor: pointer;
+                border: 1px solid var(--textColor);
+            }
+        }
+        .errorDiv{
+            color: red;
+            border-radius: 20px;
+            padding: 1.5%;
+            position: absolute;
+            top: 90%;
+            left: 3%;
+            font-size: 1vmax;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
+        }
+        .timeButtonDiv {
+            position: absolute;
+            top: 85%;
+            left:15%;
+            width: 67%;
+            // height: 10%;
+            height: fit-content;
+            display: flex;
+            flex-wrap: wrap;
+            margin: 1%;
+            .timeButton {
+                background-color: var(--textColor);
+                color: var(--backgroundColor);
+                height: fit-content;
+                padding: 1%;
+                margin: 1%;
+                width: 10%;
+                border: 1px solid var(--textColor);
+                border-radius: 10px;
+                font-size: 0.8vmax;
+                font-family: 'Poppins', sans-serif;
+                letter-spacing: 0.05vmax;
+                font-weight: 300;
+    
+                &:hover {
+                    background-color: var(--cardBgColor);
+                    color: var(--textColor);
+                    cursor: pointer;
+                    border: 1px solid var(--textColor);
+                }
+            }
+        }
+        .disabled{
+            pointer-events: none;
+        }
+    }
+}

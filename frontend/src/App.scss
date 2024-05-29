@@ -1,0 +1,11 @@
+:root{
+    --textColor: #163020;
+    --pageBackgroundColor: #EEF0E5;
+}
+[data-theme='dark']{
+    --textColor:#EEF0E5;
+    --pageBackgroundColor:#163020;
+}
+.App{
+    background-color: var(--pageBackgroundColor);
+}

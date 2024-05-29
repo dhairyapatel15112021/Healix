@@ -1,0 +1,26 @@
+:root {
+    --textColor: #163020;
+    --backgroundColor: #EEF0E5;
+    --cardBgColor: #B6C4B6;
+}
+
+[data-theme='dark'] {
+    --textColor: #EEF0E5;
+    --cardBgColor: #304D30;
+    --backgroundColor: #163020;
+}
+
+.userAppointment{
+    padding-top: 10vh;
+    height: calc(100vh - 10vh - 15vh);
+    margin-left: 3%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    p{
+        font-size: 2vmax;
+        color: var(--textColor);
+        font-family: 'Poppins', sans-serif;
+    }
+}

@@ -1,0 +1,100 @@
+:root {
+    --textColor: #163020;
+    --backgroundColor: #EEF0E5;
+    --specialWords: #304D30;
+}
+
+[data-theme='dark'] {
+    --textColor: #EEF0E5;
+    --backgroundColor: #163020;
+    --specialWords: #B6C4B6;
+}
+
+.footer{
+    height: 15vh;
+    margin-left: 20vw;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    width: 60vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--textColor);
+    .socialMediaLinks{
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        height: 8vh;
+        width: 100%;
+        list-style-type: none;
+        .socialMediaDiv{
+            position: relative;
+            height: 3vmax;
+            width: 3vmax;
+            background-color: var(--backgroundColor);
+            border-radius: 3vmax;
+            .socialMediaIcon{
+                position: absolute;
+                top: 25%;
+                left: 25%;
+                font-size: 1.5vmax;
+                color: var(--textColor);
+            }
+            .facebookIcon{
+                position: absolute;
+                top: 25%;
+                left: 33%;
+                font-size: 1.5vmax;
+                color: var(--textColor);
+            }
+            &:hover{
+                background-color: var(--textColor);
+                border: 1px solid var(--backgroundColor);
+                cursor: pointer;
+                .socialMediaIcon{
+                    color: var(--backgroundColor);
+                }
+                .facebookIcon{
+                    color: var(--backgroundColor);
+                }
+            }
+        }
+    }
+    .rightsReserved{
+        height: 7vh;
+        width: 100%;
+        text-align: center;
+        font-size: 1.3vmax;    
+        font-family: 'Playfair Display', serif;
+        letter-spacing: 0.02vmax;
+        color: var(--backgroundColor);
+    }
+}
+@media only screen and (max-width:600px){
+    .footer{
+        height: 12vh;
+        margin-left: 10vw;
+        margin-top: 3vh;
+        width: 80vw;
+        .socialMediaLinks{
+            height: 7vh;
+            .socialMediaDiv{
+                height: 3.5vmax;
+                width: 3.5vmax;
+                border-radius: 3.5vmax;
+                .socialMediaIcon{
+                    font-size: 1.8vmax;
+                }
+                .facebookIcon{
+                    font-size: 1.8vmax;
+                }
+            }
+        }
+        .rightsReserved{
+            height: 5vh;
+            font-size: 1.6vmax;
+        }
+    }
+}
