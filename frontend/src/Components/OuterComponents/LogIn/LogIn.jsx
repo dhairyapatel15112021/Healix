@@ -12,7 +12,6 @@ export const LogIn = () => {
     useEffect(() => {
         if (userLoginData.IsLogin && userLoginData.IsDoctor) {
             navigate("/doctor/dashboard");
-
         }
         else if (userLoginData.IsLogin && !userLoginData.IsDoctor) {
             navigate("/user/profile");

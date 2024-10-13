@@ -36,12 +36,12 @@ const loginUser = async (req, res) => {
         if (!matchPassword) {
             return res.status(401).json({ passwordError: "Wrong Password" });
         }
-        const accessToken = jwt.sign(existingUser.toJSON(), process.env.ACCESS_SECRET_KEY, { expiresIn: '15m' });
-        const refreshToken = jwt.sign(existingUser.toJSON(), process.env.REFRESH_SECRET_KEY);
-        const saveRefreshToken = new token({ token: refreshToken });
-        await saveRefreshToken.save();
+        const accessToken = jwt.sign(existingUser.toJSON(), process.env.ACCESS_SECRET_KEY, { expiresIn: '5m' });
+        // const refreshToken = jwt.sign(existingUser.toJSON(), process.env.REFRESH_SECRET_KEY);
+        // const saveRefreshToken = new token({ token: refreshToken });
+        // await saveRefreshToken.save();
         res.status(200).json({
-            AccessToken: accessToken, RefreshToken: refreshToken, name: existingUser.name,
+            AccessToken: accessToken, name: existingUser.name,
             id: existingUser._id, isDoctor: IsChecked
         });
     }
@@ -50,19 +50,20 @@ const loginUser = async (req, res) => {
     }
 }
 
-const logoutUser = async (req, res) => {
-    try {
-        const Token = req.body.token;
-        await token.deleteOne({ token: Token });
-        res.status(200).json({ SuccessLogout: 'logout successfull' });
-    }
-    catch (error) {
-        res.status(500).json({ Error: "Error While Logout" + error.message });
-    }
-}
+// const logoutUser = async (req, res) => {
+//     try {
+//         const Token = req.body.token;
+//         await token.deleteOne({ token: Token });
+//         res.status(200).json({ SuccessLogout: 'logout successfull' });
+//     }
+//     catch (error) {
+//         res.status(500).json({ Error: "Error While Logout" + error.message });
+//     }
+// }
 
 const updateUser = async (req,res) =>{
     try{
+        // may this can create problem because we are storing some information in JWT token also while signin
         const data = req.body;
         const User = req.user;
         const salt = await bcrypt.genSalt(10);
@@ -77,7 +78,7 @@ const updateUser = async (req,res) =>{
 const deleteUser = async (req,res) =>{
     try{
         const User=req.user;
-        const tokenRemoved = await token.deleteOne({token:req.body.token});
+        // const tokenRemoved = await token.deleteOne({token:req.body.token});
         const deletedSave = await (User.isDoctor ?doctor : user).deleteOne({_id:User._id});
         res.status(200).json({deletedUser:true});
     } catch (error) {
@@ -101,7 +102,7 @@ const getUser = async (req,res) =>{
 module.exports = {
     signupUserMethod : signupUser,
     loginUserMethod : loginUser,
-    logoutUserMethod : logoutUser,
+    // logoutUserMethod : logoutUser,
     updateUserMethod : updateUser,
     deleteUserMethod : deleteUser,
     getUserMethod : getUser,

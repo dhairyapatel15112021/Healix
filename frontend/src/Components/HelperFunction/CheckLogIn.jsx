@@ -6,6 +6,7 @@ export const CheckLogIn = async (userData) => {
     }
     else {
         try {
+             
             const backendResponse = await fetch("http://localhost:8080/login", {
                 method: "POST",
                 body: JSON.stringify(userData),
@@ -16,8 +17,7 @@ export const CheckLogIn = async (userData) => {
             const backendResponseData = await backendResponse.json();
             if (backendResponse.ok) {
                 console.log(backendResponseData);
-                sessionStorage.setItem("AccessToken",`${backendResponseData.AccessToken}`);
-                sessionStorage.setItem("RefreshToken",`${backendResponseData.RefreshToken}`);
+                sessionStorage.setItem("AccessToken",`bearer ${backendResponseData.AccessToken}`);
                 sessionStorage.setItem("IsDoctor",backendResponseData.isDoctor);
                 checkLogInResponse=({...checkLogInResponse,Name:backendResponseData.name,UserId:backendResponseData.id,IsDoctor:backendResponseData.isDoctor})
             } else {

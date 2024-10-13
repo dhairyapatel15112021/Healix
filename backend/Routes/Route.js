@@ -7,9 +7,9 @@ const dataController = require("../Controllers/DataController");
 
 router.post("/signup", userController.signupUserMethod);
 router.post("/login", userController.loginUserMethod);
-router.post("/logout", userController.logoutUserMethod);
+// router.post("/logout", userController.logoutUserMethod);
 
-router.post("/refresh",jwtTokenController.tokenRefreshMethod);
+router.get("/refresh",jwtTokenController.tokenRefreshMethod);
 
 router.post("/postBlog",jwtTokenController.authenticateMethod,blogController.postBlogMethod);
 router.get("/getBlog",blogController.getBlogMethod);
