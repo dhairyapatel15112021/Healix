@@ -19,12 +19,13 @@ export const Profile = () => {
   const getprofile = async () => {
     try {
       const profileResponse = await GetDoctorProfile();
-      if (!profileResponse.error) {
+      if (profileResponse.profileData) {
         console.log(profileResponse.profileData);
         setFormData(profileResponse.profileData);
       }
       else{
         SetError(profileResponse.error);
+        navigate('/login');
       }
     }
     catch (error) {

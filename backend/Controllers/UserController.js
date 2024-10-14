@@ -30,22 +30,21 @@ const loginUser = async (req, res) => {
         const { Email, Password, IsChecked } = req.body;
         const existingUser = IsChecked ? await doctor.findOne({ email: Email }) : await user.findOne({ email: Email });
         if (!existingUser) {
-            return res.status(401).json({ userError: "User Not Found" });
+            return res.status(401).send("User Not Found");
         }
         const matchPassword = await bcrypt.compare(Password, existingUser.password);
         if (!matchPassword) {
-            return res.status(401).json({ passwordError: "Wrong Password" });
+            return res.status(401).send( "Wrong Password");
         }
-        const accessToken = jwt.sign(existingUser.toJSON(), process.env.ACCESS_SECRET_KEY, { expiresIn: '5m' });
-        // const refreshToken = jwt.sign(existingUser.toJSON(), process.env.REFRESH_SECRET_KEY);
-        // const saveRefreshToken = new token({ token: refreshToken });
-        // await saveRefreshToken.save();
+        const payload = {name : existingUser.name , email : existingUser.email,gender : existingUser.gender,isDoctor : existingUser.isDoctor,age:existingUser.age,contact : existingUser.contact,_id:existingUser._id};
+        const accessToken = jwt.sign(payload, process.env.ACCESS_SECRET_KEY,{expiresIn : '5m'});
         res.status(200).json({
             AccessToken: accessToken, name: existingUser.name,
             id: existingUser._id, isDoctor: IsChecked
         });
     }
     catch (error) {
+        console.log(error);
         res.status(500).json({ Error: error.message });
     }
 }

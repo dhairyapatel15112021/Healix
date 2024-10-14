@@ -17,18 +17,18 @@ export const UserProfile = () => {
   const getprofile = async () => {
     try {
       const profileResponse = await GetDoctorProfile();
-      if (!profileResponse.error) {
+      if (profileResponse.profileData) {
         console.log(profileResponse.profileData);
         setFormData(profileResponse.profileData);
       }
     }
     catch (error) {
       console.log("Error While Getting Profile");
+      navigate('/login');
     }
   }
   useEffect(() => {
     userLoginData.IsLogin ? getprofile() : navigate("/login");
-    // navigate("/user/profile")
   }, [userLoginData.IsLogin,disabled]);
   const handleOnChange = (event) => {
     setUserData({ ...userData, [event.target.name]: event.target.value });
