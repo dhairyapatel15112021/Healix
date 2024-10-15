@@ -26,13 +26,13 @@ export const SignUp = () => {
     }
     return (
         <div className='signUpFormDiv'>
-            <form onSubmit={HandleOnSubmit} className='signUpForm' autocomplete="off">
+            <form onSubmit={HandleOnSubmit} className='signUpForm' autoComplete='off'>
                 <div className='welcomeText'>Welcome</div>
                 <div className='createAccountText'>Create a new account</div>
                 <div className='inputDiv'>
                     <input type='text' name='Name' placeholder='Name' onChange={handleOnChange} className='signUpInput' required></input>
-                    <select name='Gender' className='signUpInput signUpSelectInput' onChange={handleOnChange} required>
-                        <option selected disabled hidden className='signUpInput'>Gender</option>
+                    <select defaultValue="DEFAULT" name='Gender' className='signUpInput signUpSelectInput' onChange={handleOnChange} required>  
+                        <option value="DEFAULT" disabled className='signUpInput'>Gender</option>
                         <option>Male</option>
                         <option>Female</option>
                         <option>Not Disclose</option>

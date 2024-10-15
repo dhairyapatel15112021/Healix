@@ -1,45 +1,36 @@
+import axios from "axios";
+
 export const UpdateDoctor = async (data) => {
     let updateProfileResponse = {error:""};
-    console.log(data);
     const emailTest = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     const passwordTest = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    if (data.name === " "){
+    if (data.name.trim() === ""){
         updateProfileResponse.error = "! Please Enter Valid Title";
     }
-    else if(data.email === " " || !emailTest.test(data.email)){
+    else if(data.email.trim() === "" || !emailTest.test(data.email)){
         updateProfileResponse.error = "! Please Enter Valid Email";
     }
-    else if(data.speciallisation === " "){
+    else if(data.speciallisation && data.speciallisation.trim() === ""){
         updateProfileResponse.error = "! Please Enter Specialisation";
     }
-    else if(parseInt(data.age)<=0){
+    else if(data.age && parseInt(data.age)<=0){
         updateProfileResponse.error = "! Please Enter Valid Age";
     }
     else if(data.contact && data.contact.length!==10){
         updateProfileResponse.error = "! Please Enter Valid Contact";
     }
-    else if(!sessionStorage.getItem("IsDoctor") && !passwordTest.test(data.password)){
+    else if(!sessionStorage.getItem("IsDoctor") && data.password &&  !passwordTest.test(data.password)){
         updateProfileResponse.error = "! Our Password Does Not Meet Our Criteria";
     }
     else{
         try {
-            const backendResponse = await fetch("http://localhost:8080/updateUser", {
-                method: "PUT",
-                body: JSON.stringify(data),
-                headers: {
-                    "Content-Type": "application/json",
-                    "authorization": sessionStorage.getItem("AccessToken"),
-                },
+            const backendResponse = await axios.put("http://localhost:8080/updateUser",data,{
+                headers : {Authorization : sessionStorage.getItem("AccessToken")}
             });
-            const backendResponseData = await backendResponse.json();
-            if (backendResponse.ok) {
-                console.log(backendResponseData);
-                updateProfileResponse=({...updateProfileResponse,successUpdate:true});
-            } else {
-                throw new Error(backendResponseData.authenticateTokenError || backendResponseData.Error);
-            }
+            const responseData = backendResponse.data;
+            updateProfileResponse=({...updateProfileResponse,successUpdate:true});
         } catch (err) {
-            updateProfileResponse=({...updateProfileResponse,error:err.message});
+            updateProfileResponse=({...updateProfileResponse,error: err.response.data || err.message});
         }
     }
   return (

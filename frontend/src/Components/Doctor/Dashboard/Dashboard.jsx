@@ -112,7 +112,7 @@ export const Dashboard = () => {
           {
             cardContent.map((item, index) => {
               return (
-                <div className='card'>
+                <div className='card' key={index}>
                   <div className='cardNumber'>{item.number}</div>
                   <div className='cardText'>
                     <div>{item.text1}</div>

@@ -9,6 +9,8 @@ import { PatientInitialValues } from './PatientInitialValues';
 import { GetDoctorProfile } from '../../HelperFunction/GetDoctorProfile';
 import { UpdateDoctor } from '../../HelperFunction/UpdateDoctor';
 import { DeleteDoctor } from '../../HelperFunction/DeleteDoctor';
+import { GetUserName } from '../../HelperFunction/GetUserName';
+
 export const Profile = () => {
   const [disabled, setDisabled] = useState(true);
   const [formData, setFormData] = useState( {PatientInitialValues});
@@ -20,7 +22,7 @@ export const Profile = () => {
     try {
       const profileResponse = await GetDoctorProfile();
       if (profileResponse.profileData) {
-        console.log(profileResponse.profileData);
+        // console.log(profileResponse.profileData);
         setFormData(profileResponse.profileData);
       }
       else{
@@ -30,6 +32,7 @@ export const Profile = () => {
     }
     catch (error) {
       console.log("Error While Getting Profile");
+      navigate('/login');
     }
   }
   useEffect(() => {
@@ -44,7 +47,7 @@ export const Profile = () => {
       if (disabled) {
         return;
       }
-      console.log(userData);
+      //console.log(userData);
       const updateResponse = await UpdateDoctor({...formData,...userData});
       if (updateResponse.error) {
         SetError(updateResponse.error);
@@ -52,7 +55,7 @@ export const Profile = () => {
       }
       setDisabled(true);
       setFormData({...formData,...userData});
-      setUserData({});
+      setUserData({ Name: "", UserId: "", IsDoctor: false, IsLogin: false });
       SetError("* Name, Email, Speciallisation, fields are required");
       alert("Update Succesfully");
     }
@@ -64,17 +67,18 @@ export const Profile = () => {
   const HandleOnDelete = async () => {
     try {
       const deleteResponse = await DeleteDoctor();
-      if (deleteResponse.error) {
-        SetError(deleteResponse.error);
-      }
-      else if(deleteResponse.deleteSuccess){
+      if(deleteResponse.deleteSuccess){
         setFormData(PatientInitialValues);
         setUserData({});
         navigate("/");
-        alert("logout Succesfully");
-      } 
+        setUserLoginData({})
+        alert("Delete Succesfully");
+      }
+      else if (deleteResponse.error) {
+        SetError(deleteResponse.error);
+      }
       else{
-        alert("Not LogOut");
+        alert("Not Delete");
       }
     }
     catch (err) {
@@ -107,13 +111,13 @@ export const Profile = () => {
             <div className="profileContentDiv">
               <div className='personalAndPhoto'>
                 <div className='personalText'>Personal Information</div>
-                <div className='uploadedPhoto'>DP</div>
+                <div className='uploadedPhoto'>{(formData.name && GetUserName(formData.name))||"U"}</div>
               </div>
               <div className='personalDetails'>
                 <input autoComplete='off' type='text' name='name' onChange={handleOnChange} placeholder={formData.name || "Name"} className={disabled ? "notDisabled profileInput nameInput" : "profileInput nameInput"} required></input>
                 <input autoComplete='off' type='number' name='age' onChange={handleOnChange} placeholder={formData.age || "Age"} className={disabled ? "notDisabled profileInput ageInput" : "profileInput ageInput"}></input>
-                <select name='gender' onChange={handleOnChange} className={disabled ? "notDisabled profileInput profileSelectInput" : "profileInput profileSelectInput"}>
-                  <option selected disabled hidden>{formData.gender || "Gender"}</option>
+                <select defaultValue='DEFAULT' name='gender' onChange={handleOnChange} className={disabled ? "notDisabled profileInput profileSelectInput" : "profileInput profileSelectInput"}>
+                  <option value='DEFAULT' disabled>{formData.gender || "Gender"}</option>
                   <option>Male</option>
                   <option>Female</option>
                   <option>Not Disclose</option>

@@ -26,7 +26,7 @@ export const TimeAndChart = () => {
     <div className='timeAndChartDiv'>
       <div className='timeDiv'>
         <div className='infoDateDiv'>
-          <div><i class="fa-solid fa-circle-info"></i> Select dates and slots for Not availabe timing and vice versa.</div>
+          <div><i className="fa-solid fa-circle-info"></i> Select dates and slots for Not availabe timing and vice versa.</div>
           <div><DatePicker onChange={(event) => setDate(new Date(event))} render={<Icon />} /></div>
         </div>
         <div className='timeButtonDiv'>

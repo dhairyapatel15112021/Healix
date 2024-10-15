@@ -7,13 +7,11 @@ export const CheckRefresh = async () => {
             headers: {
                 Authorization: sessionStorage.getItem("AccessToken")
             }
-        })
+        });
         const data = backendResponse.data;
-        console.log(data);
         sessionStorage.setItem("AccessToken", `bearer ${data.accessToken}`);
         sessionStorage.setItem("IsDoctor", data.user.isDoctor);
         checkRefreshResponse = ({ ...checkRefreshResponse, isAuthenticated: true, user: data.user });
-        console.log(data.user);
     } catch (err) {
         sessionStorage.clear();
         checkRefreshResponse = ({ ...checkRefreshResponse, error: err.response.data || err.message });

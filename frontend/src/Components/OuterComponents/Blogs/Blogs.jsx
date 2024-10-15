@@ -4,78 +4,7 @@ import img from '../../../Assets/Doctor_With_BG.jpg'
 import { SetTextToEllipsis } from '../../HelperFunction/SetTextToEllipsis';
 import { GetBlogs } from '../../HelperFunction/GetBlogs';
 import { GetDateFormat } from '../../HelperFunction/GetDateFormat';
-const Data = [
-    {
-        Name: "Dr Dhairya Patel",
-        Date: "29/02/2024",
-        category: "filter4",
-        title: "A Holistic Approach to General Health: Nurturing Your Body and Mind",
-        description: 'hi In our fast-paced modern lives, maintaining good general health has become more important than ever. As the saying goes, "Health is wealth," and prioritizing our well-being can lead to a happier, more fulfilling life hi In our fast-paced modern lives, maintaining good general health has become more important than ever. As the saying goes, "Health is wealth," and prioritizing our well-being can lead to a happier, more fulfilling life.',
-    },
-    {
-        Name: "Dr Dhairya Patel",
-        Date: "29/02/2024",
-        category: "filter3",
-        title: "A Holistic Approach to General Health: Nurturing Your Body and Mind",
-        description: 'In our fast-paced modern lives, maintaining good general health has become more important than ever. As the saying goes, "Health is wealth," and prioritizing our well-being can lead to a happier, more fulfilling life.',
-    },
-    {
-        Name: "Dr Dhairya Patel",
-        Date: "29/02/2024",
-        category: "filter4",
-        title: "A Holistic Approach to General Health: Nurturing Your Body and Mind",
-        description: 'In our fast-paced modern lives, maintaining good general health has become more important than ever. As the saying goes, "Health is wealth," and prioritizing our well-being can lead to a happier, more fulfilling life.',
-    },
-    {
-        Name: "Dr Dhairya Patel",
-        Date: "29/02/2024",
-        category: "filter2",
-        title: "A Holistic Approach to General Health: Nurturing Your Body and Mind",
-        description: 'In our fast-paced modern lives, maintaining good general health has become more important than ever. As the saying goes, "Health is wealth," and prioritizing our well-being can lead to a happier, more fulfilling life.',
-    },
-    {
-        Name: "Dr Dhairya Patel",
-        Date: "29/02/2024",
-        category: "filter2",
-        title: "A Holistic Approach to General Health: Nurturing Your Body and Mind",
-        description: 'In our fast-paced modern lives, maintaining good general health has become more important than ever. As the saying goes, "Health is wealth," and prioritizing our well-being can lead to a happier, more fulfilling life.',
-    },
-    {
-        Name: "Dr Dhairya Patel",
-        Date: "29/02/2024",
-        category: "filter2",
-        title: "A Holistic Approach to General Health: Nurturing Your Body and Mind",
-        description: 'In our fast-paced modern lives, maintaining good general health has become more important than ever. As the saying goes, "Health is wealth," and prioritizing our well-being can lead to a happier, more fulfilling life.',
-    },
-    {
-        Name: "Dr Dhairya Patel",
-        Date: "29/02/2024",
-        category: "filter2",
-        title: "A Holistic Approach to General Health: Nurturing Your Body and Mind",
-        description: 'In our fast-paced modern lives, maintaining good general health has become more important than ever. As the saying goes, "Health is wealth," and prioritizing our well-being can lead to a happier, more fulfilling life.',
-    },
-    {
-        Name: "Dr Dhairya Patel",
-        Date: "29/02/2024",
-        category: "filter2",
-        title: "A Holistic Approach to General Health: Nurturing Your Body and Mind",
-        description: 'In our fast-paced modern lives, maintaining good general health has become more important than ever. As the saying goes, "Health is wealth," and prioritizing our well-being can lead to a happier, more fulfilling life.',
-    },
-    {
-        Name: "Dr Dhairya Patel",
-        Date: "29/02/2024",
-        category: "filter2",
-        title: "A Holistic Approach to General Health: Nurturing Your Body and Mind",
-        description: 'In our fast-paced modern lives, maintaining good general health has become more important than ever. As the saying goes, "Health is wealth," and prioritizing our well-being can lead to a happier, more fulfilling life.',
-    },
-    {
-        Name: "Dr Dhairya Patel",
-        Date: "29/02/2024",
-        category: "filter2",
-        title: "A Holistic Approach to General Health: Nurturing Your Body and Mind",
-        description: 'In our fast-paced modern lives, maintaining good general health has become more important than ever. As the saying goes, "Health is wealth," and prioritizing our well-being can lead to a happier, more fulfilling life.',
-    },
-]
+
 export const Blogs = () => {
     const [allblogs,setAllBlogs] = useState([])
     const [blogData,setBlogData] = useState([]);
@@ -93,7 +22,7 @@ export const Blogs = () => {
       const getBlogs = async()=>{
         try{
             const blogResponse = await GetBlogs();
-            if(!blogResponse.error){
+            if(blogResponse.blogData){
                 setBlogData(blogResponse.blogData);
                 setAllBlogs(blogResponse.blogData);
             }

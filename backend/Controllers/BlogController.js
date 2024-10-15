@@ -2,7 +2,6 @@ const blog = require("../Database/Models/BlogModel");
 
 const postBlog = async (req,res)=>{
     try{
-        console.log(req.body.name);
         const newBlog = new blog({name:req.body.name,doctorId:req.body.id,description:req.body.description,category:req.body.category,
         title:req.body.title,dateCreated:req.body.date});
         const savedNewBlog = await newBlog.save();
@@ -20,7 +19,7 @@ const getBlog = async(req,res) =>{
         res.status(200).json({allBlogs:AllBlogs});
     }
     catch (error) {
-        res.status(500).json({ Error: error.message });
+        res.status(500).send(error.message);
     }
 }
 

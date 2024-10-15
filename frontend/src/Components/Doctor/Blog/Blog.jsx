@@ -23,11 +23,14 @@ export const Blog = () => {
     try {
         event.preventDefault();
         const uploadBlogResponse = await UploadBlog({ ...blogData, date:date,name:userLoginData.Name,id:userLoginData.UserId });
-        if (uploadBlogResponse.error) {
-            SetError(uploadBlogResponse.error);
-            return;
+        if(uploadBlogResponse.successPublish){
+          setBlogData({});
+          SetError("*All fields are required");
+          alert("Uploaded Sucessfully");
         }
-        setBlogData({});
+        else{
+          SetError(uploadBlogResponse.error || "Error Occured");
+        }
     }
     catch (err) {
         console.log(err);

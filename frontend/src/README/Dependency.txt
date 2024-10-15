@@ -1,6 +1,6 @@
 -> npx create-react-app healix
 -> npm i react-router-dom
--> npm i node-sass
+-> npm i sass
 -> npm install react-multi-date-picker
 -> npm install react-paginate
 ->  <link rel="preconnect" href="https://fonts.googleapis.com">
