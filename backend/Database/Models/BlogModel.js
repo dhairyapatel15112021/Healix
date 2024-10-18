@@ -7,8 +7,9 @@ const blogSchema = new mongoose.Schema(
             required: true,
         },
         doctorId: {
-            type: String,
-            required: true,
+            type: mongoose.Schema.Types.ObjectId,
+            ref : 'doctor',
+            required : true
         },
         description: {
             type: String,
@@ -18,16 +19,12 @@ const blogSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
-        name: {
-            type: String,
-            required: true,
-        },
-        dateCreated: {
+        date: {
             type: Date,
             required: true,
         },
     });
 
-const blog = mongoose.model("Blog", blogSchema);
+const blog = mongoose.model("blog", blogSchema);
 
 module.exports = blog;

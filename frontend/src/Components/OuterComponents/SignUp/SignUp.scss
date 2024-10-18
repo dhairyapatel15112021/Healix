@@ -5,12 +5,12 @@
     --errorBG : #ffffff;
 }
 
-[data-theme='dark'] {
-    --textColor: #EEF0E5;
-    --backgroundColor: #163020;
-    --specialWords: #B6C4B6;
-    --errorBG : "";
-}
+// [data-theme='dark'] {
+//     --textColor: #EEF0E5;
+//     --backgroundColor: #163020;
+//     --specialWords: #B6C4B6;
+//     --errorBG : "";
+// }
 
 .signUpFormDiv {
     padding-top: 10vh;
@@ -97,7 +97,6 @@
             }
             .error{
                 color: red;
-                background-color: var(--errorBG);
                 border-radius: 20px;
                 height: 5%;
                 padding: 1%;

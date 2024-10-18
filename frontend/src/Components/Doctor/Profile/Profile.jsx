@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import './Profile.scss';
 import { Sidebar } from '../Sidebar/Sidebar';
-import { ToggleButton } from '../../OuterComponents/Header/ToggleButton/ToggleButton';
 import { TimeAndChart } from './TimeAndChart/TimeAndChart';
 import { useNavigate } from 'react-router-dom';
 import { userContext } from '../../../App';
@@ -89,7 +88,6 @@ export const Profile = () => {
   return (
     <div className='profileDiv'>
       <Sidebar />
-      <ToggleButton />
       <div className='profile'>
         <div className='profileText'>Profile</div>
         <div className='profileAndInfo'>

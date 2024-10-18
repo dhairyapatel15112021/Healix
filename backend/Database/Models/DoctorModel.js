@@ -9,7 +9,6 @@ const doctorSchema = new mongoose.Schema(
         email: {
             type: String,
             required: true,
-            unique: true,
         },
         password: {
             type: String,
@@ -26,12 +25,6 @@ const doctorSchema = new mongoose.Schema(
         address:{
             type:String,
         },
-        timingSlot:
-            [{
-                day:{type:Date,required:true},
-                slots:[String],
-            }]
-        ,
         gender: {
             type: String,
             enum: ['Male', 'Female', 'Not Disclose'],
@@ -57,6 +50,6 @@ const doctorSchema = new mongoose.Schema(
         }
     });
 
-const doctor = mongoose.model("Doctor",doctorSchema);
+const doctor = mongoose.model("doctor",doctorSchema);
 
 module.exports=doctor;

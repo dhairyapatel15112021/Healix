@@ -5,7 +5,6 @@ import Icon from "react-multi-date-picker/components/icon";
 import ReactPaginate from 'react-paginate';
 import '../Pagination/Pagination.css';
 import { Sidebar } from '../Sidebar/Sidebar';
-import { ToggleButton } from '../../OuterComponents/Header/ToggleButton/ToggleButton';
 import { useWidth } from '../../Hooks/useWidth';
 import { InitialData } from './InitialData';
 import { useNavigate } from 'react-router-dom';
@@ -29,7 +28,6 @@ export const Patient = () => {
   return (
     <div className='patientDiv'>
       <Sidebar />
-      <ToggleButton />
       <div className='patient'>
         <div className='patientText'>Patient</div>
         <div className='patientInfoDiv'>

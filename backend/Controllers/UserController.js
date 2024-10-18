@@ -1,6 +1,5 @@
 const user = require("../Database/Models/UserModel");
 const doctor = require("../Database/Models/DoctorModel");
-const token = require("../Database/Models/TokenModel");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const dotenv = require("dotenv");
@@ -37,28 +36,16 @@ const loginUser = async (req, res) => {
             return res.status(401).send( "Wrong Password");
         }
         const payload = {name : existingUser.name , email : existingUser.email,gender : existingUser.gender,isDoctor : existingUser.isDoctor,age:existingUser.age,contact : existingUser.contact,_id:existingUser._id};
-        const accessToken = jwt.sign(payload, process.env.ACCESS_SECRET_KEY,{expiresIn : '5m'});
+        const accessToken = jwt.sign(payload, process.env.ACCESS_SECRET_KEY,{expiresIn : '15m'});
         res.status(200).json({
             AccessToken: accessToken, name: existingUser.name,
             id: existingUser._id, isDoctor: IsChecked
         });
     }
     catch (error) {
-        console.log(error);
-        res.status(500).json({ Error: error.message });
+        res.status(500).send(error.message);
     }
 }
-
-// const logoutUser = async (req, res) => {
-//     try {
-//         const Token = req.body.token;
-//         await token.deleteOne({ token: Token });
-//         res.status(200).json({ SuccessLogout: 'logout successfull' });
-//     }
-//     catch (error) {
-//         res.status(500).json({ Error: "Error While Logout" + error.message });
-//     }
-// }
 
 const updateUser = async (req,res) =>{
     try{
@@ -84,8 +71,8 @@ const updateUser = async (req,res) =>{
 
 const deleteUser = async (req,res) =>{
     try{
-        const User=req.user;
-        const deletedSave = await (User.isDoctor ?doctor : user).deleteOne({_id:User._id});
+        const {_id,isDoctor}=req.user;
+        const deletedSave = await (isDoctor ?doctor : user).deleteOne({_id});
         res.status(200).json({deletedUser:true});
     } catch (error) {
         res.status(500).send( `Error While Logout ${error.message}`);
@@ -108,7 +95,6 @@ const getUser = async (req,res) =>{
 module.exports = {
     signupUserMethod : signupUser,
     loginUserMethod : loginUser,
-    // logoutUserMethod : logoutUser,
     updateUserMethod : updateUser,
     deleteUserMethod : deleteUser,
     getUserMethod : getUser,

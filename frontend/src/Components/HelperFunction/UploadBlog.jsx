@@ -13,7 +13,7 @@ export const UploadBlog = async (blogData) => {
     }
     else{
         try {
-            const backendResponse = await axios.post("http://localhost:8080/postBlog",blogData,{
+            const backendResponse = await axios.post("http://localhost:8080/doctor/postBlog",blogData,{
                 headers : {Authorization : sessionStorage.getItem("AccessToken")}
             });
                 uploadBlogResponse=({...uploadBlogResponse,successPublish:true});

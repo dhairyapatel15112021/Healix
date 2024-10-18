@@ -6,7 +6,6 @@ import DatePicker from "react-multi-date-picker";
 import Icon from "react-multi-date-picker/components/icon";
 import ReactPaginate from 'react-paginate';
 import { Sidebar } from '../Sidebar/Sidebar';
-import { ToggleButton } from '../../OuterComponents/Header/ToggleButton/ToggleButton';
 import { InitialAppointData } from './InitialAppointData';
 import { useNavigate } from 'react-router-dom';
 import { userContext } from '../../../App';
@@ -29,7 +28,6 @@ export const Appointment = () => {
   return (
     <div className='appointmentPaymentDiv'>
       <Sidebar />
-      <ToggleButton />
       <div className='appointment'>
         <div className='appointmentText'>Appointments</div>
         <div className='appointmentInfoDiv'>

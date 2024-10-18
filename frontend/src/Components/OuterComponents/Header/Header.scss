@@ -3,11 +3,11 @@
     --textColor: #163020;
     --backgroundColor: #EEF0E5;
 }
-[data-theme='dark']{
-    --logoURL : url("../../../Assets/Healix_Light.svg");
-    --textColor:#EEF0E5;
-    --backgroundColor:#163020;
-}
+// [data-theme='dark']{
+//     --logoURL : url("../../../Assets/Healix_Light.svg");
+//     --textColor:#EEF0E5;
+//     --backgroundColor:#163020;
+// }
 .header{
     position: fixed;
     display: flex;

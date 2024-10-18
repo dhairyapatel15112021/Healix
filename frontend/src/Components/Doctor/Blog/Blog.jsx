@@ -3,7 +3,6 @@ import './Blog.scss';
 import DatePicker from "react-multi-date-picker";
 import Icon from "react-multi-date-picker/components/icon";
 import { Sidebar } from '../Sidebar/Sidebar';
-import { ToggleButton } from '../../OuterComponents/Header/ToggleButton/ToggleButton';
 import { useNavigate } from 'react-router-dom';
 import { userContext } from '../../../App';
 import { UploadBlog } from '../../HelperFunction/UploadBlog';
@@ -22,7 +21,7 @@ export const Blog = () => {
   const HandleOnSubmit = async (event) => {
     try {
         event.preventDefault();
-        const uploadBlogResponse = await UploadBlog({ ...blogData, date:date,name:userLoginData.Name,id:userLoginData.UserId });
+        const uploadBlogResponse = await UploadBlog({ ...blogData, date:date });
         if(uploadBlogResponse.successPublish){
           setBlogData({});
           SetError("*All fields are required");
@@ -41,7 +40,6 @@ export const Blog = () => {
   return (
     <div className='blogDiv'>
       <Sidebar />
-      <ToggleButton />
       <div className="blog">
         <div className="blogText">Blog</div>
         <div className='uploadAndHistory'>

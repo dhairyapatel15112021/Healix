@@ -5,7 +5,6 @@ import ReactPaginate from 'react-paginate';
 import '../Pagination/Pagination.css';
 import './Dashboard.scss';
 import { Sidebar } from '../Sidebar/Sidebar';
-import { ToggleButton } from '../../OuterComponents/Header/ToggleButton/ToggleButton';
 import { useWidth } from '../../Hooks/useWidth';
 import { useNavigate } from 'react-router-dom';
 import { userContext } from '../../../App';
@@ -105,7 +104,6 @@ export const Dashboard = () => {
   return (
     <div className='dashboardDiv'>
       <Sidebar />
-      <ToggleButton/>
       <div className='dashboard'>
         <div className='dashboardText'>Dashboard</div>
         <div className='cardDiv'>

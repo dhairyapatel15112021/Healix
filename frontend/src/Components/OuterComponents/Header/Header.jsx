@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import './Header.scss';
-import { ToggleButton } from './ToggleButton/ToggleButton';
 import { useWidth } from '../../Hooks/useWidth';
 import { useUser } from '../../Hooks/useUser';
 import { CheckLogout } from '../../HelperFunction/CheckLogout';
@@ -83,8 +82,8 @@ export const Header = () => {
         </li>
         <div className='line end'></div>
       </ul>
-      <div className='darkLightMode'><ToggleButton />
-      </div>
+      <div></div>
+      {/* above div is just for adjusting the alignment */}
     </div>
   )
 }

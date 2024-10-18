@@ -4,11 +4,11 @@
     --cardBgColor: #B6C4B6;
 }
 
-[data-theme='dark'] {
-    --textColor: #EEF0E5;
-    --backgroundColor: #163020;
-    --cardBgColor: #304D30;
-}
+// [data-theme='dark'] {
+//     --textColor: #EEF0E5;
+//     --backgroundColor: #163020;
+//     --cardBgColor: #304D30;
+// }
 
 .blogDiv {
     display: flex;
@@ -44,6 +44,7 @@
                 width: 44%;
                 margin: 0% 3%;
                 color: var(--textColor);
+
                 .uploadText {
                     height: 5%;
                     width: 100%;
@@ -77,16 +78,18 @@
                             outline: none;
                         }
                     }
-                    .titleInput{
+
+                    .titleInput {
                         height: 10%;
                         width: 80%;
                     }
 
-                    .descriptionInput{
+                    .descriptionInput {
                         height: 30%;
                         width: 80%;
                     }
-                    .blogSelectInput{
+
+                    .blogSelectInput {
                         height: 10%;
                         width: 83.5%;
                     }
@@ -99,7 +102,7 @@
                         letter-spacing: 0.02vmax;
                     }
 
-                    .setDateDiv{
+                    .setDateDiv {
                         height: 10%;
                         width: 77.5%;
                         display: flex;
@@ -114,13 +117,15 @@
                         color: var(--backgroundColor);
                         background-color: var(--textColor);
                         font-family: 'Playfair Display', serif;
-                        .setDateText{
+
+                        .setDateText {
                             font-size: 1.2vmax;
                         }
                     }
-                    .uploadButton{
+
+                    .uploadButton {
                         border: 1px solid var(--backgroundColor);
-                        background-color:var(--textColor) ;
+                        background-color: var(--textColor);
                         color: var(--backgroundColor);
                         padding: 2%;
                         margin-left: 66%;
@@ -130,6 +135,7 @@
                         font-size: 1.2vmax;
                         font-family: 'Poppins', sans-serif;
                         letter-spacing: 0.2vmax;
+
                         &:hover {
                             background-color: var(--backgroundColor);
                             color: var(--textColor);
@@ -139,67 +145,76 @@
 
                     }
                 }
-            }
-            .errorDiv{
-            color: red;
-            border-radius: 20px;
-            // height: 6%;
-            padding: 1.5%;
-            position: absolute;
-            top: 74%;
-            left: 3%;
-            font-size: 0.95vmax;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 300;
+
+                .errorDiv {
+                    color: red;
+                    border-radius: 20px;
+                    // height: 6%;
+                    padding: 1.5%;
+                    position: absolute;
+                    top: 74%;
+                    left: 3%;
+                    font-size: 0.95vmax;
+                    font-family: 'Poppins', sans-serif;
+                    font-weight: 300;
+                }
             }
         }
+
     }
 }
-@media only screen and (max-width:600px){
-    .blogDiv{
-        .blog{
-            .blogText{
+
+@media only screen and (max-width:600px) {
+    .blogDiv {
+        .blog {
+            .blogText {
                 margin-top: 8%;
                 margin-left: 3%;
                 font-size: 3vmax;
             }
-            .uploadAndHistory{
+
+            .uploadAndHistory {
                 flex-direction: column;
-                .uploadDiv{
+
+                .uploadDiv {
                     width: 100%;
                     height: 50%;
-                    .uploadText{
+
+                    .uploadText {
                         font-size: 2.2vmax;
                     }
-                    .uploadContentDiv{
+
+                    .uploadContentDiv {
                         height: 100%;
 
-                        .blogInput{
+                        .blogInput {
                             font-size: 1.4vmax;
                             width: 85%;
                             height: 15%;
                         }
-                        .descriptionInput{
+
+                        .descriptionInput {
                             height: 30%;
                         }
 
-                        .blogSelectInput{
+                        .blogSelectInput {
                             width: 88.2%;
                         }
 
-                        ::placeholder{
+                        ::placeholder {
                             font-size: 1.4vmax;
                         }
 
-                        .setDateDiv{
+                        .setDateDiv {
                             width: 82%;
                             height: 15%;
-                            .setDateText{
+
+                            .setDateText {
                                 font-size: 1.4vmax;
                             }
                         }
 
-                        .uploadButton{
+                        .uploadButton {
                             font-size: 1.4vmax;
                             margin-left: 70%;
                         }
