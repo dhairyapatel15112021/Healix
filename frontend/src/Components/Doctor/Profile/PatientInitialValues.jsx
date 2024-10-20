@@ -1,7 +1,7 @@
 export const PatientInitialValues = {
     name:"Name",
     age:"Age",
-    gender:"Gender",
+    gender:"DEFAULT",
     email:"Email",
     contact:"Contact",
     bio:"Bio",

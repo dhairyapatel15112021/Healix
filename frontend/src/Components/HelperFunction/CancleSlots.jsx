@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const CancleSlots = async (buttonText, Date) => {
     let cancleSlotsResponse = { error: "" };
     if (!buttonText.trim()) {
@@ -5,23 +7,13 @@ export const CancleSlots = async (buttonText, Date) => {
     }
     else {
         try {
-            const backendResponse = await fetch("http://localhost:8080/cancleSlot", {
-                method: "POST",
-                body: JSON.stringify({ text: buttonText, date: Date }),
-                headers: {
-                    "Content-Type": "application/json",
-                    "authorization": sessionStorage.getItem("AccessToken"),
-                },
-            });
-            const backendResponseData = await backendResponse.json();
-            if (backendResponse.ok) {
-                cancleSlotsResponse = ({ ...cancleSlotsResponse, slotSuceess: backendResponseData.slotSuceess });
-            } else {
-                throw new Error(backendResponseData.Error);
-            }
+            const backendResponse = await axios.post("http://localhost:8080/cancleSlot",{time : buttonText , date : Date},{
+                headers : {Authorization : sessionStorage.getItem("AccessToken")}
+            })
+            cancleSlotsResponse = {...cancleSlotsResponse , slotSuceess : backendResponse.data.slotSuceess}
         }
         catch (err) {
-            cancleSlotsResponse = ({ ...cancleSlotsResponse, error: err.message });
+            cancleSlotsResponse = ({ ...cancleSlotsResponse, error: err.response.data || err.message });
         }
     }
     return cancleSlotsResponse;

@@ -20,10 +20,13 @@ const getSpeciallison = async (req, res) => {
 const getTime = async (req, res) => {
     try {
         if (req.user.isDoctor) {
-            return res.status(400).send("You Are Not Authorised!");
+            return res.status(500).send("You Are Not Authorised!");
         }
         let { date, id } = req.body;
-        date = date.toISOString().split("T")[0];
+        if(!date || !id){
+            return res.status(500).send("Invalid Data");
+        }
+        date = new Date(date).toISOString().split("T")[0];
         const timingSlot = await TimingSlot.findOne({ doctorId: id, day: date });
         if (!timingSlot) {
             return res.status(200).json({ EmptyArray: true });
@@ -43,7 +46,10 @@ const cancleSlot = async (req, res) => {
             return res.status(400).send("You Are Not Authorised!");
         }
         let { time, date } = req.body;
-        date = date.toISOString().split("T")[0];
+        if(!time || !date){
+            return res.status(500).send("Invalid Data");
+        }
+        date = new Date(date).toISOString().split("T")[0];
         let timingslot = await TimingSlot.findOne({ doctorId: User._id, day: date });
         if (!timingslot) {
             const slot = new TimingSlot({ doctorId: User._id, day: date, doctorUnavailable: [time], appointmentBooked: [] });
@@ -76,7 +82,7 @@ const bookAppointment = async (req, res) => {
         }
         const userId = User._id;
         const data = req.body;
-        const date = req.body.date || new Date();
+        const date = new Date(data.date);
         let timingSlot = await TimingSlot.findOne({ doctorId: data.doctorId, day: date.toISOString().split("T")[0] }).session(session);
         if (!timingSlot) {
             const newSlot = new TimingSlot({ doctorId: data.doctorId, day: date, doctorUnavailable: [], appointmentBooked: [data.time] });
@@ -143,7 +149,6 @@ const yourAppointment = async (req,res) =>{
                 }
             }
         ]);
-        //const appointments = await Appointment.find({userId : User._id});
         res.status(200).json({"appointments" : appointments});
     }
     catch(err){
@@ -155,7 +160,6 @@ const deleteAppointment = async (req,res) => {
     let session = await mongoose.startSession();
     session.startTransaction();
     try{
-        console.log("hi - 1");
         const User = req.user;
         if(User.isDoctor){
             throw new Error("Your Are Not Authorised");
@@ -182,11 +186,43 @@ const deleteAppointment = async (req,res) => {
     }
 }
 
+const updateAppointment = async (req,res) => {
+    const session = await mongoose.startSession();
+    session.startTransaction();
+    try{
+        const User = req.user;
+        if(User.isDoctor){
+            throw new Error("Your Are Not Authorised");
+        }
+        const data = req.body;
+        if(data.doctorId || data.time){
+            const appointment = await Appointment.findOne({_id : data.id}).session(session);
+            let timingSlot = await TimingSlot.findOne({doctorId : data.doctorId || appointment.doctorId}).session(session);
+            if(data.doctorId){
+                const newTimingSlot = new TimingSlot({doctorId : data.doctorId , day})
+            }
+            else{
+
+            }
+        }
+        else{
+            await Appointment.updateOne({_id : data.id} , {$set : { ...data }}).session(session);
+        }
+        session.commitTransaction();
+        res.status(200).send("Update Succesfully");
+    }
+    catch(err){
+        session.abortTransaction();
+        res.status(500).send(err.message);
+    }
+}
+
 module.exports = {
     speciallisonMethod: getSpeciallison,
     timeMethod: getTime,
     cancleSlotMethod: cancleSlot,
     bookAppointmentMethod: bookAppointment,
     yourAppointmentMethod : yourAppointment,
-    deleteAppointmentMethod : deleteAppointment
+    deleteAppointmentMethod : deleteAppointment,
+    updateAppointmentMethod : updateAppointment
 }

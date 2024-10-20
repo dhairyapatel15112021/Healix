@@ -7,20 +7,22 @@ import { GetDoctorProfile } from '../../HelperFunction/GetDoctorProfile';
 import { UpdateDoctor } from '../../HelperFunction/UpdateDoctor';
 import { DeleteDoctor } from '../../HelperFunction/DeleteDoctor';
 import { GetUserName } from '../../HelperFunction/GetUserName';
+
 export const UserProfile = () => {
+
   const navigate = useNavigate();
   const {userLoginData, setUserLoginData} = useContext(userContext);
   const [disabled, setDisabled] = useState(true);
   const [passwordDisabled, setPasswordDisabled] = useState(true);
-  const [formData, setFormData] = useState( {ProfileInitialValues});
+  const [formData, setFormData] = useState(ProfileInitialValues);
   const [error, SetError] = useState("* Email field are required");
   const [userData, setUserData] = useState({});
+
   const getprofile = async () => {
     try {
       const profileResponse = await GetDoctorProfile();
       if (profileResponse.profileData) {
-        // console.log(profileResponse.profileData);
-        setFormData(profileResponse.profileData);
+        setFormData({...formData , ...profileResponse.profileData});
       }
       else{
         SetError(profileResponse.error);
@@ -32,19 +34,22 @@ export const UserProfile = () => {
       navigate('/login');
     }
   }
+
   useEffect(() => {
     userLoginData.IsLogin ? navigate("/user/profile") : navigate("/login");
-    getprofile();
+    userLoginData.IsLogin && getprofile();
   }, [userLoginData.IsLogin,disabled]);
+
   const handleOnChange = (event) => {
     setUserData({ ...userData, [event.target.name]: event.target.value });
   }
+
   const HandleOnUpdate = async () => {
     try {
       if (disabled) {
         return;
       }
-      const updateResponse = await UpdateDoctor({...formData,...userData});
+      const updateResponse = await UpdateDoctor(userData);
       if (updateResponse.successUpdate) {
         setDisabled(true);
         setPasswordDisabled(true);
@@ -60,6 +65,7 @@ export const UserProfile = () => {
       console.log(`error while Update The Doctor ${err}`);
     }
   }
+
   const HandleOnDelete = async () => {
     try {
       const deleteResponse = await DeleteDoctor();
@@ -78,10 +84,10 @@ export const UserProfile = () => {
       }
     }
     catch (err) {
-      console.log(err);
-      console.log("error while Delete Doctor");
+      console.log("error while Delete User");
     }
   }
+
   return (
         <div className='UserProfileDiv'>
           <div className='profileAndButtonDiv'>
@@ -108,11 +114,11 @@ export const UserProfile = () => {
                 <input name='name' autoComplete='off' type='text' onChange={handleOnChange} placeholder={formData.name || "Name"} className={disabled ? "notDisabled profileInput nameInput" : "profileInput"}></input>
                 <input name='age' autoComplete='off' type='text' onChange={handleOnChange} placeholder={formData.age || "Age"} className={disabled ? "notDisabled profileInput ageInput" : "profileInput ageInput"}></input>
                 <input name='contact' autoComplete='off' type='text' onChange={handleOnChange} placeholder={formData.contact || "Contact"} className={disabled ? "notDisabled profileInput contactInput" : "profileInput contactInput"}></input>
-                <select defaultValue="DEFAULT" name='gender' onChange={handleOnChange} className={disabled ? "notDisabled profileInput" : "profileInput"}>
+                <select value={formData.gender} name='gender' onChange={handleOnChange} className={disabled ? "notDisabled profileInput" : "profileInput"}>
                   <option value="DEFAULT" disabled>Gender</option>
-                  <option>Male</option>
-                  <option>Female</option>
-                  <option>Not Disclose</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Not Disclose">Not Disclose</option>
                 </select>
                 <input name='email' autoComplete='off' type='text' onChange={handleOnChange} placeholder={formData.email || "Email"} className={disabled ? "notDisabled profileInput" : "profileInput"}></input>
                 <button className={disabled ? "notDisabled changePassword" : "changePassword"} onClick={() => setPasswordDisabled(false)}>Change Password</button>

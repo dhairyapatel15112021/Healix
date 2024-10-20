@@ -3,5 +3,5 @@ export const ProfileInitialValues = {
     email:"Email",
     age:"Age",
     contact:"Contact",
-    gender:"Gender",
+    gender:"DEFAULT",
 }

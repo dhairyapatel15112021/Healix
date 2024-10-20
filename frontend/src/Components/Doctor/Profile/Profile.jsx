@@ -11,18 +11,19 @@ import { DeleteDoctor } from '../../HelperFunction/DeleteDoctor';
 import { GetUserName } from '../../HelperFunction/GetUserName';
 
 export const Profile = () => {
+
   const [disabled, setDisabled] = useState(true);
-  const [formData, setFormData] = useState( {PatientInitialValues});
+  const [formData, setFormData] = useState(PatientInitialValues);
   const [error, SetError] = useState("* Name, Email, Speciallisation, fields are required");
   const navigate = useNavigate();
   const [userData, setUserData] = useState({});
   const { userLoginData, setUserLoginData } = useContext(userContext);
+
   const getprofile = async () => {
     try {
       const profileResponse = await GetDoctorProfile();
       if (profileResponse.profileData) {
-        // console.log(profileResponse.profileData);
-        setFormData(profileResponse.profileData);
+        setFormData(()=>({...formData , ...profileResponse.profileData}));
       }
       else{
         SetError(profileResponse.error);
@@ -34,35 +35,37 @@ export const Profile = () => {
       navigate('/login');
     }
   }
+
   useEffect(() => {
     userLoginData.IsLogin ? navigate("/doctor/profile") : navigate("/login");
-    getprofile();
+    userLoginData.IsLogin && getprofile();
   }, [userLoginData.IsLogin,disabled]);
+
   const handleOnChange = (event) => {
     setUserData({ ...userData, [event.target.name]: event.target.value });
   }
+
   const HandleOnUpdate = async () => {
     try {
       if (disabled) {
         return;
       }
-      //console.log(userData);
-      const updateResponse = await UpdateDoctor({...formData,...userData});
-      if (updateResponse.error) {
-        SetError(updateResponse.error);
+      const updateResponse = await UpdateDoctor(userData);
+      if (updateResponse.successUpdate) {
+        setDisabled(true);
+        setFormData({...formData,...userData});
+        setUserData({ Name: formData.name, UserId: "", IsDoctor: false, IsLogin: false });
+        SetError("* Name, Email, Speciallisation, fields are required");
+        alert("Update Succesfully");
         return;
       }
-      setDisabled(true);
-      setFormData({...formData,...userData});
-      setUserData({ Name: "", UserId: "", IsDoctor: false, IsLogin: false });
-      SetError("* Name, Email, Speciallisation, fields are required");
-      alert("Update Succesfully");
+      SetError(updateResponse.error);
     }
     catch (err) {
-      console.log(err);
-      console.log("error while Update The Doctor");
+      console.log("error while Update The Profile");
     }
   }
+
   const HandleOnDelete = async () => {
     try {
       const deleteResponse = await DeleteDoctor();
@@ -81,10 +84,10 @@ export const Profile = () => {
       }
     }
     catch (err) {
-      console.log(err);
       console.log("error while Delete Doctor");
     }
   }
+  
   return (
     <div className='profileDiv'>
       <Sidebar />
@@ -114,11 +117,11 @@ export const Profile = () => {
               <div className='personalDetails'>
                 <input autoComplete='off' type='text' name='name' onChange={handleOnChange} placeholder={formData.name || "Name"} className={disabled ? "notDisabled profileInput nameInput" : "profileInput nameInput"} required></input>
                 <input autoComplete='off' type='number' name='age' onChange={handleOnChange} placeholder={formData.age || "Age"} className={disabled ? "notDisabled profileInput ageInput" : "profileInput ageInput"}></input>
-                <select defaultValue='DEFAULT' name='gender' onChange={handleOnChange} className={disabled ? "notDisabled profileInput profileSelectInput" : "profileInput profileSelectInput"}>
+                <select value={formData.gender} name='gender' onChange={handleOnChange} className={disabled ? "notDisabled profileInput profileSelectInput" : "profileInput profileSelectInput"}>
                   <option value='DEFAULT' disabled>{formData.gender || "Gender"}</option>
-                  <option>Male</option>
-                  <option>Female</option>
-                  <option>Not Disclose</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Not Disclose">Not Disclose</option>
                 </select>
                 <input autoComplete='off' type='text' name='email' onChange={handleOnChange} placeholder={formData.email || "Email"} className={disabled ? "notDisabled profileInput" : "profileInput"} required></input>
                 <input autoComplete='off' type='text' name='contact' onChange={handleOnChange} placeholder={formData.contact || "Contact"} className={disabled ? "notDisabled profileInput" : "profileInput"} style={{ width: "44%" }}></input>

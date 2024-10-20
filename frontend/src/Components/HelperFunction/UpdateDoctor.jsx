@@ -4,10 +4,10 @@ export const UpdateDoctor = async (data) => {
     let updateProfileResponse = {error:""};
     const emailTest = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     const passwordTest = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    if (data.name.trim() === ""){
-        updateProfileResponse.error = "! Please Enter Valid Title";
+    if (data.name && data.name.trim() === ""){
+        updateProfileResponse.error = "! Please Enter Valid Name";
     }
-    else if(data.email.trim() === "" || !emailTest.test(data.email)){
+    else if((data.email && data.email.trim() === "") || (data.email && !emailTest.test(data.email))){
         updateProfileResponse.error = "! Please Enter Valid Email";
     }
     else if(data.speciallisation && data.speciallisation.trim() === ""){
@@ -19,7 +19,7 @@ export const UpdateDoctor = async (data) => {
     else if(data.contact && data.contact.length!==10){
         updateProfileResponse.error = "! Please Enter Valid Contact";
     }
-    else if(!sessionStorage.getItem("IsDoctor") && data.password &&  !passwordTest.test(data.password)){
+    else if(data.password &&  !passwordTest.test(data.password)){
         updateProfileResponse.error = "! Our Password Does Not Meet Our Criteria";
     }
     else{

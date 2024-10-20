@@ -7,18 +7,20 @@ const dataController = require("../Controllers/DataController");
 
 // check for all route that some route is only for user and some for doctor
 
-router.post("/signup", userController.signupUserMethod); // perfect working
-router.post("/login", userController.loginUserMethod); // perfect working
+router.post("/signup", userController.signupUserMethod);
+router.post("/login", userController.loginUserMethod);
 
-router.get("/refresh",jwtTokenController.tokenRefreshMethod); // perfect working
+router.get("/refresh",jwtTokenController.tokenRefreshMethod);
 
-router.post("/doctor/postBlog",jwtTokenController.authenticateMethod,blogController.postBlogMethod); // perfect backend working
-router.get("/getBlog",blogController.getBlogsMethod); // perfect backend working
-router.get("/doctor/blog",jwtTokenController.authenticateMethod,blogController.getBlog); //perfect backend working
+router.post("/doctor/postBlog",jwtTokenController.authenticateMethod,blogController.postBlogMethod);
+router.get("/getBlog",blogController.getBlogsMethod);
+router.get("/doctor/blog",jwtTokenController.authenticateMethod,blogController.getBlog); //perfect backend working , frontend is left
 
-router.put("/updateUser",jwtTokenController.authenticateMethod,userController.updateUserMethod); //perfect backend working -> please check that this not create a problem becuase some data is also stored in jwt
-router.delete("/deleteUser",jwtTokenController.authenticateMethod,userController.deleteUserMethod); // perfect backend working
-router.get("/getUser",jwtTokenController.authenticateMethod,userController.getUserMethod); // perfect backend working
+router.put("/updateUser",jwtTokenController.authenticateMethod,userController.updateUserMethod);
+//please check updating that this not create a problem becuase some data is also stored in jwt
+// doctor bio , description , etc update is baki
+router.delete("/deleteUser",jwtTokenController.authenticateMethod,userController.deleteUserMethod);
+router.get("/getUser",jwtTokenController.authenticateMethod,userController.getUserMethod);
 
 router.get("/getSpecialisation",jwtTokenController.authenticateMethod,dataController.speciallisonMethod); //perfect working backend
 router.post("/getTime",jwtTokenController.authenticateMethod,dataController.timeMethod); // perfect working backend
@@ -27,6 +29,10 @@ router.post("/cancleSlot",jwtTokenController.authenticateMethod,dataController.c
 router.post("/bookAppointment",jwtTokenController.authenticateMethod,dataController.bookAppointmentMethod);
 router.get("/yourAppointment",jwtTokenController.authenticateMethod,dataController.yourAppointmentMethod);
 router.delete("/deleteAppointment",jwtTokenController.authenticateMethod,dataController.deleteAppointmentMethod);
+router.put("/updateAppointment",jwtTokenController.authenticateMethod,) // backend is not ready
 
+// prescription
+// after posting the blog from doctor side, form is still there so improve it
 
+// profile picture like blob?
 module.exports = router;

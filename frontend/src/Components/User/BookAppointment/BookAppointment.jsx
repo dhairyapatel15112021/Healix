@@ -5,6 +5,7 @@ import './BookAppointment.scss';
 import { useNavigate } from 'react-router-dom';
 import { userContext } from '../../../App';
 import { ButtonData } from '../../Doctor/Profile/TimeAndChart/ButtonData';
+import axios from 'axios';
 export const BookAppointment = () => {
   const navigate = useNavigate();
   const [error, SetError] = useState("* All fields are required");
@@ -19,18 +20,13 @@ export const BookAppointment = () => {
   useEffect(() => {
     const getSpecialisation = async () => {
       try {
-        const backendResponse = await fetch("http://localhost:8080/getSpecialisation", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            "authorization": sessionStorage.getItem("AccessToken"),
-          },
+        const backendResponse = await axios.get("http://localhost:8080/getSpecialisation",{
+          headers : {Authorization : sessionStorage.getItem("AccessToken")}
         });
-        const backendResponseData = await backendResponse.json();
-        setDoctorData(backendResponseData.data);
+        setDoctorData(backendResponse.data.data);
       }
       catch (error) {
-        console.log(error);
+        console.log(error.response.data || error.message);
       }
     }
     getSpecialisation();
@@ -43,30 +39,21 @@ export const BookAppointment = () => {
     const setSpeciality = async() => {
       try {
         setDoctorFlag(true);
-        const backendResponse = await fetch("http://localhost:8080/getTime", {
-          method: "POST",
-          body:JSON.stringify({date:date,doctorCategory:category}),
-          headers: {
-            "Content-Type": "application/json",
-            "authorization": sessionStorage.getItem("AccessToken"),
-          },
+        const backendResponse = await axios.post("http://localhost:8080/getTime",{date : date , id : category},{
+          headers : {Authorization : sessionStorage.getItem("AccessToken")}
         });
-        const backendResponseData = await backendResponse.json();
-        if (backendResponseData.timeData){
-          const Time = ButtonData.filter((item,index)=>{
-            return !backendResponseData.timeData.includes(item);
+        if (backendResponse.data.timeData){
+          const Time = ButtonData.filter((item)=>{
+            return !backendResponse.data.timeData.includes(item);
           });
           setTimingSlot(Time);
         }
-        else if (backendResponseData.EmptyArray){
+        else if (backendResponse.EmptyArray){
           setTimingSlot(ButtonData);
-        }
-        else{
-          SetError(backendResponseData.Error);
         }
       }
       catch (error) {
-        console.log(error);
+        console.log(error.response.data || error.message);
       }
     }
     setSpeciality();
@@ -99,17 +86,20 @@ export const BookAppointment = () => {
           <div>Select The Date</div>
           <div><DatePicker onChange={setDate} render={<Icon/>} /></div>
         </div>
-        <select onChange={(event)=>setCategory(event.target.value) } className={dateFlag ? "appointmentInput appointmentSelectInput" : "appointmentInput appointmentSelectInput disabled"}>
+        <select onChange={(event)=>{ 
+          const index = event.target.selectedIndex;
+          const children = event.target.children.item(index);
+            setCategory(()=>children.getAttribute("data-id")) }} className={dateFlag ? "appointmentInput appointmentSelectInput" : "appointmentInput appointmentSelectInput disabled"}>
           <option selected disabled hidden>Speciality</option>
           {
-            doctorData.map((item, index) => {
+            doctorData.map((item) => {
               return (
-                <option key={index}>{item.speciallisation}</option>
+                <option key={item._id} data-id={item._id}>{item.speciallisation}</option>
               )
             })
           }
         </select>
-        <select name='timingSlot' onChange={handleOnChange} className={dateFlag && doctorFlag ? "appointmentInput appointmentSelectInput" : "appointmentInput appointmentSelectInput disabled"}>
+        <select name='time' onChange={handleOnChange} className={dateFlag && doctorFlag ? "appointmentInput appointmentSelectInput" : "appointmentInput appointmentSelectInput disabled"}>
           <option selected disabled hidden>Timing Slot</option>
           {
             timingSlot ? timingSlot.map((item, index) => {
@@ -119,7 +109,17 @@ export const BookAppointment = () => {
             }) : <option>There is No Slot available</option>
           }
         </select>
-        <button className='bookButton'>Book</button>
+        <button className='bookButton' onClick={async ()=>{
+          try{
+            const backendResponse = await axios.post("http://localhost:8080/bookAppointment",{...userData , date : date , doctorId : category},{
+              headers : {Authorization : sessionStorage.getItem("AccessToken")}
+            });
+            console.log(backendResponse.data.appointment);
+          }
+          catch(err){
+            console.log(err.response.data || err.message);
+          }
+        }}>Book</button>
         <div className='errorDiv'>{error}</div>
       </form>
     </div>
