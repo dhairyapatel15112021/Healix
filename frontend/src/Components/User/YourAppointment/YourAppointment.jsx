@@ -20,6 +20,7 @@ export const YourAppointment = () => {
   useEffect(() => {
     userLoginData.IsLogin ? navigate("/user/appointment") : navigate("/login");
   }, [userLoginData.IsLogin]);
+  
   const handlePageClick = (selectedPage) => {
     setCurrentPage(selectedPage.selected + 1);
     // Fetch and update data for the new page

@@ -60,6 +60,10 @@
                     border: 1px solid var(--textColor);
                 }
             }
+            .unavailable{
+                background-color: var(--backgroundColor);
+                color: #163020;
+            }
         }
     }   
 }

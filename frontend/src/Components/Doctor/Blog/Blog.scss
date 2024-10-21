@@ -159,6 +159,53 @@
                     font-weight: 300;
                 }
             }
+            .historyDiv{
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+                width: 44%;
+                margin: 0 3%;
+                color: var(--textColor);
+                .historyText{
+                    height: 5%;
+                    width: 100%;
+                    margin: 2.8% 0%;
+                    font-size: 2vmax;
+                    color: var(--textColor);
+                    text-shadow: 0 0 2px var(--textColor);
+                    font-family: 'Poppins', sans-serif;
+                    font-weight: 400;
+                }
+               .historyContentDiv{
+                    height: 90%;
+                    width: 100%;
+                    margin: 4.5% 0%;
+                    display: grid;
+                    grid-template-rows: repeat(6,15%);
+                    grid-template-columns: repeat(1,100%);
+                    .content{
+                        height: 50%;
+                        width: 92%;
+                        background-color: var(--textColor);
+                        border-radius: 5px;
+                        color: var(--backgroundColor);
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        padding: 2% 4%;
+                        font-size: 1.2vmax;
+                        letter-spacing: 0.02vmax;
+                        font-family: 'Playfair Display', serif;
+                        .modifyButtons{
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            width: 15%;
+                        }
+                    }
+               }
+            }
         }
 
     }

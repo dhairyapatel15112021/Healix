@@ -217,6 +217,25 @@ const updateAppointment = async (req,res) => {
     }
 }
 
+const unavailable = async (req,res) => {
+    try{
+        const {date} = req.body;
+        if(!date){
+            return res.status(500).send("Invalid Data");
+        }
+        const User = req.user;
+        if(!User.isDoctor){
+            throw new Error("Your Are Not Authorised");
+        }
+        const id = User._id;
+        const slot = await TimingSlot.findOne({day : new Date(date).toISOString().split("T")[0] , doctorId : id});
+        res.status(200).json({"slot":slot});
+    }
+    catch(err){
+        res.status(500).send(err.message);
+    }
+}
+
 module.exports = {
     speciallisonMethod: getSpeciallison,
     timeMethod: getTime,
@@ -224,5 +243,6 @@ module.exports = {
     bookAppointmentMethod: bookAppointment,
     yourAppointmentMethod : yourAppointment,
     deleteAppointmentMethod : deleteAppointment,
-    updateAppointmentMethod : updateAppointment
+    updateAppointmentMethod : updateAppointment,
+    unavailableMethod : unavailable
 }

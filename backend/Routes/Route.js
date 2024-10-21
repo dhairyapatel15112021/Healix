@@ -22,11 +22,12 @@ router.put("/updateUser",jwtTokenController.authenticateMethod,userController.up
 router.delete("/deleteUser",jwtTokenController.authenticateMethod,userController.deleteUserMethod);
 router.get("/getUser",jwtTokenController.authenticateMethod,userController.getUserMethod);
 
-router.get("/getSpecialisation",jwtTokenController.authenticateMethod,dataController.speciallisonMethod); //perfect working backend
-router.post("/getTime",jwtTokenController.authenticateMethod,dataController.timeMethod); // perfect working backend
-router.post("/cancleSlot",jwtTokenController.authenticateMethod,dataController.cancleSlotMethod); // perfect working backend
+router.get("/getSpecialisation",jwtTokenController.authenticateMethod,dataController.speciallisonMethod);
+router.post("/getTime",jwtTokenController.authenticateMethod,dataController.timeMethod);
+router.post("/cancleSlot",jwtTokenController.authenticateMethod,dataController.cancleSlotMethod); // perfect working backend - frontend change is needed
+router.post("/unavailable",jwtTokenController.authenticateMethod,dataController.unavailableMethod);
 
-router.post("/bookAppointment",jwtTokenController.authenticateMethod,dataController.bookAppointmentMethod);
+router.post("/bookAppointment",jwtTokenController.authenticateMethod,dataController.bookAppointmentMethod); // perfect working backend
 router.get("/yourAppointment",jwtTokenController.authenticateMethod,dataController.yourAppointmentMethod);
 router.delete("/deleteAppointment",jwtTokenController.authenticateMethod,dataController.deleteAppointmentMethod);
 router.put("/updateAppointment",jwtTokenController.authenticateMethod,) // backend is not ready

@@ -6,15 +6,31 @@ import { Sidebar } from '../Sidebar/Sidebar';
 import { useNavigate } from 'react-router-dom';
 import { userContext } from '../../../App';
 import { UploadBlog } from '../../HelperFunction/UploadBlog';
+import axios from 'axios';
 
 export const Blog = () => {
 
   const navigate = useNavigate();
   const { userLoginData, setUserLoginData } = useContext(userContext);
   const [error, SetError] = useState("* All fields are required");
-  const [blogData, setBlogData] = useState({ title: "", description: "", category: "DEFAULT",date : new Date() });
+  const [blogHistory, setBlogHisroty] = useState([]);
+  const [blogData, setBlogData] = useState({ title: "", description: "", category: "DEFAULT", date: new Date() });
 
+  const getBlogHistory = async () => {
+    try {
+      const response = await axios.get("http://localhost:8080/doctor/blog", {
+        headers: { Authorization: sessionStorage.getItem("AccessToken") }
+      });
+      const data = response.data.blogs;
+      console.log(data);
+      setBlogHisroty(data);
+    }
+    catch (err) {
+      console.log("ErroR While Geting Blog History");
+    }
+  }
   useEffect(() => {
+    getBlogHistory();
     userLoginData.IsLogin ? navigate("/doctor/blog") : navigate("/login");
   }, [userLoginData.IsLogin]);
 
@@ -27,7 +43,8 @@ export const Blog = () => {
       event.preventDefault();
       const uploadBlogResponse = await UploadBlog(blogData);
       if (uploadBlogResponse.successPublish) {
-        setBlogData({ title: "", description: "", category: "DEFAULT",date : new Date() });
+        getBlogHistory();
+        setBlogData({ title: "", description: "", category: "DEFAULT", date: new Date() });
         SetError("*All fields are required");
         alert("Uploaded Sucessfully");
       }
@@ -70,7 +87,7 @@ export const Blog = () => {
               </select>
               <div className='setDateDiv'>
                 <div className='setDateText'>{getDate()}</div>
-                <div><DatePicker onChange={(e) => setBlogData({...blogData , date : new Date(e)})} render={<Icon />} /></div>
+                <div><DatePicker onChange={(e) => setBlogData({ ...blogData, date: new Date(e) })} render={<Icon />} /></div>
               </div>
               <button type='submit' className='uploadButton'>UPLOAD</button>
             </form>
@@ -80,9 +97,24 @@ export const Blog = () => {
             <div className='historyText'>
               Blog History
             </div>
-            <div>
-              Under Maintenance
-            </div>
+            {
+              blogHistory.length === 0 ? <div></div> : 
+              <div className='historyContentDiv'>
+                {
+                  blogHistory.map((item)=>{
+                    return(
+                      <div key={item._id} data-id={item._id} className='content'>
+                        <div>{item.title}</div>
+                        <div className='modifyButtons'>
+                          <div><i className="fa-solid fa-pen-to-square"></i></div>
+                          <div><i className="fa-solid fa-trash"></i></div>
+                        </div>
+                      </div>
+                    )
+                  })
+                }
+              </div>
+            }
           </div>
         </div>
       </div>
