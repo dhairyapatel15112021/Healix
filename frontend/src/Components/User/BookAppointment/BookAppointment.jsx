@@ -4,7 +4,7 @@ import Icon from "react-multi-date-picker/components/icon";
 import './BookAppointment.scss';
 import { useNavigate } from 'react-router-dom';
 import { userContext } from '../../../App';
-import { ButtonData } from '../../Doctor/Profile/TimeAndChart/ButtonData';
+import { data } from '../../Doctor/Profile/TimeAndChart/ButtonData';
 import axios from 'axios';
 import { SubmitAppointment } from '../../HelperFunction/SubmitAppointment';
 
@@ -15,7 +15,7 @@ export const BookAppointment = () => {
   const [dateFlag, setDateFlag] = useState(false);
   const [doctorFlag, setDoctorFlag] = useState(false);
   const [doctorData, setDoctorData] = useState([]);
-  const [timingSlot, setTimingSlot] = useState(ButtonData);
+  const [timingSlot, setTimingSlot] = useState(data);
   const [date, setDateHook] = useState(new Date());
   const [category, setCategory] = useState("");
   const [userData, setUserData] = useState({});
@@ -39,14 +39,15 @@ export const BookAppointment = () => {
       const backendResponse = await axios.post("http://localhost:8080/getTime", { date: date, id: category }, {
         headers: { Authorization: sessionStorage.getItem("AccessToken") }
       });
+      console.log(backendResponse);
       if (backendResponse.data.timeData) {
-        const Time = ButtonData.filter((item) => {
+        const Time = data.filter((item) => {
           return !backendResponse.data.timeData.includes(item);
         });
         setTimingSlot(Time);
       }
-      else if (backendResponse.EmptyArray) {
-        setTimingSlot(ButtonData);
+      else if (backendResponse.data.EmptyArray) {
+        setTimingSlot(data);
       }
     }
     catch (error) {
@@ -63,7 +64,8 @@ export const BookAppointment = () => {
   }, []);
 
   useEffect(() => {
-    userLoginData.IsLogin ? navigate("/user/bookAppointment") : navigate("/login");
+    //userLoginData.IsLogin ? navigate("/user/bookAppointment") : navigate("/login");
+    !userLoginData.IsLogin && navigate("/login");
   }, [userLoginData.IsLogin]);
 
   const setDate = (event) => {

@@ -26,13 +26,14 @@ export const Blog = () => {
       setBlogHisroty(data);
     }
     catch (err) {
-      console.log("ErroR While Geting Blog History");
+      console.log(`Error While Geting Blog History ${err}`);
     }
   }
   useEffect(() => {
     getBlogHistory();
-    userLoginData.IsLogin ? navigate("/doctor/blog") : navigate("/login");
-  }, [userLoginData.IsLogin]);
+    //userLoginData.IsLogin ? navigate("/doctor/blog") : navigate("/login");
+    !userLoginData.IsLogin && navigate("/login");
+  }, []);
 
   const handleOnChange = (event) => {
     setBlogData({ ...blogData, [event.target.name]: event.target.value });
@@ -98,7 +99,7 @@ export const Blog = () => {
               Blog History
             </div>
             {
-              blogHistory.length === 0 ? <div></div> : 
+              blogHistory.length === 0 ? <div className='noBlogsHistory'>There Is No Blogs 😔</div> : 
               <div className='historyContentDiv'>
                 {
                   blogHistory.map((item)=>{

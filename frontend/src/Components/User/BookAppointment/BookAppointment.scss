@@ -160,3 +160,19 @@
         }
     }
 }
+
+@media screen and (max-width : 600px) {
+    .bookAppointmentDiv{
+        .fillText{
+            margin-top: 5vh;
+        }
+        .bookAppointmentForm{
+            margin-top: 1vh;
+
+            .bookButton{
+                margin-left: 67%;
+                width: 25%;
+            }
+        }
+    }
+}

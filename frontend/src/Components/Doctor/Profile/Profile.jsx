@@ -24,6 +24,7 @@ export const Profile = () => {
       const profileResponse = await GetDoctorProfile();
       if (profileResponse.profileData) {
         setFormData(()=>({...formData , ...profileResponse.profileData}));
+        console.log(formData);
       }
       else{
         SetError(profileResponse.error);
@@ -37,7 +38,8 @@ export const Profile = () => {
   }
 
   useEffect(() => {
-    userLoginData.IsLogin ? navigate("/doctor/profile") : navigate("/login");
+   // userLoginData.IsLogin ? navigate("/doctor/profile") : navigate("/login");
+    !userLoginData.IsLogin && navigate("/login");
     userLoginData.IsLogin && getprofile();
   }, [userLoginData.IsLogin,disabled]);
 
@@ -118,7 +120,7 @@ export const Profile = () => {
                 <input autoComplete='off' type='text' name='name' onChange={handleOnChange} placeholder={formData.name || "Name"} className={disabled ? "notDisabled profileInput nameInput" : "profileInput nameInput"} required></input>
                 <input autoComplete='off' type='number' name='age' onChange={handleOnChange} placeholder={formData.age || "Age"} className={disabled ? "notDisabled profileInput ageInput" : "profileInput ageInput"}></input>
                 <select value={formData.gender} name='gender' onChange={handleOnChange} className={disabled ? "notDisabled profileInput profileSelectInput" : "profileInput profileSelectInput"}>
-                  <option value='DEFAULT' disabled>{formData.gender || "Gender"}</option>
+                  <option value="DEFAULT" selected disabled>Gender</option>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                   <option value="Not Disclose">Not Disclose</option>

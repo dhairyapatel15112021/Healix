@@ -159,7 +159,8 @@
                     font-weight: 300;
                 }
             }
-            .historyDiv{
+
+            .historyDiv {
                 position: relative;
                 display: flex;
                 flex-direction: column;
@@ -167,7 +168,8 @@
                 width: 44%;
                 margin: 0 3%;
                 color: var(--textColor);
-                .historyText{
+
+                .historyText {
                     height: 5%;
                     width: 100%;
                     margin: 2.8% 0%;
@@ -177,14 +179,16 @@
                     font-family: 'Poppins', sans-serif;
                     font-weight: 400;
                 }
-               .historyContentDiv{
+
+                .historyContentDiv {
                     height: 90%;
                     width: 100%;
                     margin: 4.5% 0%;
                     display: grid;
-                    grid-template-rows: repeat(6,15%);
-                    grid-template-columns: repeat(1,100%);
-                    .content{
+                    grid-template-rows: repeat(6, 15%);
+                    grid-template-columns: repeat(1, 100%);
+
+                    .content {
                         height: 50%;
                         width: 92%;
                         background-color: var(--textColor);
@@ -197,14 +201,23 @@
                         font-size: 1.2vmax;
                         letter-spacing: 0.02vmax;
                         font-family: 'Playfair Display', serif;
-                        .modifyButtons{
+
+                        .modifyButtons {
                             display: flex;
                             justify-content: space-between;
                             align-items: center;
                             width: 15%;
                         }
                     }
-               }
+                }
+            
+                .noBlogsHistory {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 60%;
+                    font-size: 2vmax;
+                }
             }
         }
 
@@ -224,7 +237,7 @@
                 flex-direction: column;
 
                 .uploadDiv {
-                    width: 100%;
+                    width: 94%;
                     height: 50%;
 
                     .uploadText {
@@ -233,10 +246,11 @@
 
                     .uploadContentDiv {
                         height: 100%;
+                        
 
                         .blogInput {
                             font-size: 1.4vmax;
-                            width: 85%;
+                            width: 88%;
                             height: 15%;
                         }
 
@@ -245,7 +259,7 @@
                         }
 
                         .blogSelectInput {
-                            width: 88.2%;
+                            width: 91%;
                         }
 
                         ::placeholder {
@@ -253,7 +267,7 @@
                         }
 
                         .setDateDiv {
-                            width: 82%;
+                            width: 85%;
                             height: 15%;
 
                             .setDateText {
@@ -266,7 +280,21 @@
                             margin-left: 70%;
                         }
                     }
+                    .errorDiv{
+                        top: 90%;
+                        font-size: 1vmax;
+                    }
                 }
+
+                .historyDiv {
+                    width: 90%;
+                    height: 50%;
+                    .noBlogsHistory {
+                        height: 100%;
+                        width: 100%;
+                    }
+                }
+
             }
         }
     }

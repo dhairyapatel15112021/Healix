@@ -10,11 +10,12 @@ export const LogIn = () => {
     const [userData, setUserData] = useState({});
     const [isChecked, setIsChecked] = useState(false);
     useEffect(() => {
+        console.log("Inside login");
         if (userLoginData.IsLogin && userLoginData.IsDoctor) {
             navigate("/doctor/dashboard");
         }
         else if (userLoginData.IsLogin && !userLoginData.IsDoctor) {
-            navigate("/user/profile");
+            navigate("/user/appointment");
         }
     }, [userLoginData.IsLogin]);
 

@@ -16,7 +16,12 @@ function App() {
         try {
           const checkRefreshResponse = await CheckRefresh();
           if (checkRefreshResponse.isAuthenticated) {
-            setUserLoginData({ Name: checkRefreshResponse.user.name, UserId: checkRefreshResponse.user._id, IsDoctor: checkRefreshResponse.user.isDoctor, IsLogin: true });
+            const user = checkRefreshResponse.user;
+            if(user._id != userLoginData.UserId){
+              console.log(user._id);
+              console.log(userLoginData.UserId);
+              setUserLoginData({ Name: checkRefreshResponse.user.name, UserId: checkRefreshResponse.user._id, IsDoctor: checkRefreshResponse.user.isDoctor, IsLogin: true });
+            }
           }
           else{
             setUserLoginData({ Name: "", UserId: "", IsDoctor: false, IsLogin: false });

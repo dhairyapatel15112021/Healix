@@ -27,7 +27,7 @@ const getTime = async (req, res) => {
             return res.status(500).send("Invalid Data");
         }
         date = new Date(date).toISOString().split("T")[0];
-        const timingSlot = await TimingSlot.findOne({ doctorId: id, day: date });
+        const timingSlot = await TimingSlot.findOne({ doctorId: new mongoose.Types.ObjectId(id), day: date });
         if (!timingSlot) {
             return res.status(200).json({ EmptyArray: true });
         }
@@ -50,7 +50,7 @@ const cancleSlot = async (req, res) => {
             return res.status(500).send("Invalid Data");
         }
         date = new Date(date).toISOString().split("T")[0];
-        let timingslot = await TimingSlot.findOne({ doctorId: User._id, day: date });
+        let timingslot = await TimingSlot.findOne({ doctorId: new mongoose.Types.ObjectId(User._id), day: date });
         if (!timingslot) {
             const slot = new TimingSlot({ doctorId: User._id, day: date, doctorUnavailable: [time], appointmentBooked: [] });
             await slot.save();
@@ -83,7 +83,7 @@ const bookAppointment = async (req, res) => {
         const userId = User._id;
         const data = req.body;
         const date = new Date(data.date);
-        let timingSlot = await TimingSlot.findOne({ doctorId: data.doctorId, day: date.toISOString().split("T")[0] }).session(session);
+        let timingSlot = await TimingSlot.findOne({ doctorId: new mongoose.Types.ObjectId(data.doctorId), day: date.toISOString().split("T")[0] }).session(session);
         if (!timingSlot) {
             const newSlot = new TimingSlot({ doctorId: data.doctorId, day: date, doctorUnavailable: [], appointmentBooked: [data.time] });
             await newSlot.save({ session: session })
@@ -172,7 +172,7 @@ const deleteAppointment = async (req,res) => {
         const time = appointment.time;
         const date = appointment.date;
         const doctorId = appointment.doctorId;
-        let timingSlot = await TimingSlot.findOne({doctorId : doctorId , day : date.toISOString().split("T")[0]}).session(session);
+        let timingSlot = await TimingSlot.findOne({doctorId : doctorId , day : new Date(date)}).session(session);
         timingSlot.appointmentBooked = timingSlot.appointmentBooked.filter((item)=>item!=time);
         await timingSlot.save({session : session});
         await AppointmentStatus.deleteOne({appointmentId : id});

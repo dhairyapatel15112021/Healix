@@ -8,19 +8,56 @@ import Icon from "react-multi-date-picker/components/icon";
 import ReactPaginate from 'react-paginate';
 import '../../Doctor/Pagination/Pagination.css';
 import { AppointmentData } from './AppointmentData';
+import axios from 'axios';
 
 export const YourAppointment = () => {
   const [isMobile] = useWidth();
   const [totalAppointments, setTotatAppointments] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
+  const [appointments, setAppointments] = useState([]);
   const appointmentsPerPage = isMobile ? 8 : 7; // Number of items per page
   const pageCount = Math.ceil(totalAppointments / appointmentsPerPage);// Calculate the total number of pages
   const navigate = useNavigate();
   const { userLoginData, setUserLoginData } = useContext(userContext);
+
+  const getAppointment = async () => {
+    try {
+      const response = await axios.get("http://localhost:8080/yourAppointment", { headers: { Authorization: sessionStorage.getItem("AccessToken") } });
+      const data = response.data.appointments;
+      console.log(data);
+      if (!data) {
+        setAppointments([]);
+        return;
+      }
+      data.splice(9,data.length - 9);
+      setAppointments(data);
+    }
+    catch (err) {
+      console.log(`Error while fetching the appointments ${err.response.data || err.message}`);
+    }
+  }
+
+  const deleteAppointment = async (id) => {
+    try{
+      const response = await axios.delete("http://localhost:8080/deleteAppointment",{
+        headers : {Authorization : sessionStorage.getItem("AccessToken")},
+        data : {id : id}
+      });
+      getAppointment();
+    }
+    catch(err){
+      console.log(`err while deleting the appointment ${err.response.data || err.message}`);
+    }
+  }
   useEffect(() => {
-    userLoginData.IsLogin ? navigate("/user/appointment") : navigate("/login");
+    //userLoginData.IsLogin ? navigate("/user/appointment") : navigate("/login");
+    !userLoginData.IsLogin && navigate("/login");
   }, [userLoginData.IsLogin]);
-  
+
+  useEffect(() => {
+    getAppointment();
+  }, []);
+
   const handlePageClick = (selectedPage) => {
     setCurrentPage(selectedPage.selected + 1);
     // Fetch and update data for the new page
@@ -28,9 +65,44 @@ export const YourAppointment = () => {
   };
   return (
     <div className='userAppointment'>
-      <p>
-        This Page Is Under Maintenance 😔
-      </p>
+      <div className='fillText'>Your Appointment</div>
+      <div className='appointmentText'>Manage Now !!</div>
+    
+        {
+          appointments?.length === 0 ? 
+          <div style={{height :"60%" , display:"flex",justifyContent:"center",alignItems:"center"}}>
+            <div>There Is No Appointment 😔</div>
+            <button>Book Appointment</button>
+          </div>
+            :
+            <div className='appointmentDiv'>
+              <div className='content headerContent'>
+                <div>Name</div>
+                <div>Date</div>
+                <div>Time</div>
+                <div>Contact</div>
+                <div>Info</div>
+                <div>Update</div>
+                <div>Delete</div>
+              </div>
+              {/* fnln date time contact addinfo update delete */}
+              {
+                appointments.map((item)=>{
+                  return(
+                    <div className='content' key={item._id} data-id={item._id}>
+                      <div>{item.firstname} {item.lastname}</div>
+                      <div>{new Date(item.date).toISOString().split("T")[0]}</div>
+                      <div>{item.time}</div>
+                      <div>{item.contact}</div>
+                      <button></button>
+                      <div><i className="fa-solid fa-pen-to-square"></i></div>
+                      <div onClick={()=>deleteAppointment(item._id)}><i className="fa-solid fa-trash"></i></div>
+                    </div>
+                  )
+                })
+              }
+            </div>
+        }
     </div>
   )
 }

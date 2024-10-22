@@ -36,7 +36,8 @@ export const UserProfile = () => {
   }
 
   useEffect(() => {
-    userLoginData.IsLogin ? navigate("/user/profile") : navigate("/login");
+    //userLoginData.IsLogin ? navigate("/user/profile") : navigate("/login");
+    !userLoginData.IsLogin && navigate("/login");
     userLoginData.IsLogin && getprofile();
   }, [userLoginData.IsLogin,disabled]);
 

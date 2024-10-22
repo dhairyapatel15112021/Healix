@@ -18,7 +18,8 @@ export const Appointment = () => {
   const navigate = useNavigate();
   const {userLoginData, setUserLoginData} = useContext(userContext);
   useEffect(() => {
-    userLoginData.IsLogin ? navigate("/doctor/appointment") : navigate("/login");
+    //userLoginData.IsLogin ? navigate("/doctor/appointment") : navigate("/login");
+    !userLoginData.IsLogin && navigate("/login");
   }, [userLoginData.IsLogin]);
   const handlePageClick = (selectedPage) => {
     setCurrentPage(selectedPage.selected + 1);

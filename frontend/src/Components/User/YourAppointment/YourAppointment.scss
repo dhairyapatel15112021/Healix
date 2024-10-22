@@ -10,17 +10,51 @@
 //     --backgroundColor: #163020;
 // }
 
-.userAppointment{
+.userAppointment {
     padding-top: 10vh;
-    height: calc(100vh - 10vh - 15vh);
-    margin-left: 3%;
-    width: 100%;
+    height: calc(100vh - 10vh);
+    margin: 0% 9%;
+    margin-bottom: 5%;
+    width: 82%;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    p{
+    flex-direction: column;
+    font-family: 'Poppins', sans-serif;
+    color: var(--textColor);
+    .fillText {
+        margin-top: 3vh;
+        font-size: 3.5vmax;
+        font-weight: 500;
+    }
+    .appointmentText {
         font-size: 2vmax;
-        color: var(--textColor);
-        font-family: 'Poppins', sans-serif;
+        font-weight: 300;
+    }
+    .appointmentDiv{
+        display: grid;
+        grid-template-rows: repeat(8,10%);
+        // grid-template-columns: 10% 20% 10% 10% 10% 10% 10%;
+        height: 100%;
+
+        .content{
+            color: var(--backgroundColor);
+            background-color: var(--textColor);
+            height: 90%;
+            width: 100%;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 0.02vmax;
+            border-radius: 5px;
+            display: grid;
+            grid-template-rows: repeat(1,100%);
+            grid-template-columns: 15% 10% 10% 15% 10% 10% 10%;
+            gap: calc(20%/6);
+            align-items: center;
+            justify-items: center;
+        }
+        .headerContent{
+            background: none;
+            color: var(--textColor);
+            font-weight: bold;
+            font-family: 'Poppins', sans-serif;
+        }
     }
 }
