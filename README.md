@@ -6,19 +6,19 @@
 ## Features  
 
 ### 🏥 **For Patients**  
-✅ **Book Appointments** – Schedule doctor consultations with real-time availability.  
-✅ **Profile Management** – Maintain personal and medical records.  
-✅ **Appointment History** – View past and upcoming appointments.  
+- **Book Appointments** – Schedule doctor consultations with real-time availability.  
+- **Profile Management** – Maintain personal and medical records.  
+- **Appointment History** – View past and upcoming appointments.  
 
 ### 👨‍⚕️ **For Doctors**  
-✅ **Manage Appointments** – Accept, reschedule, or cancel bookings.  
-✅ **Patient Records** – Access medical history and prescriptions.  
-✅ **Availability Settings** – Set consultation hours and availability.   
+- **Manage Appointments** – Accept, reschedule, or cancel bookings.  
+- **Patient Records** – Access medical history and prescriptions.  
+- **Availability Settings** – Set consultation hours and availability.   
 
 ### ⚙️ **Admin Panel**  
-✅ **User Management** – Oversee doctors, patients, and appointments.  
-✅ **Reports & Analytics** – Monitor platform usage and appointment trends.  
-✅ **System Configuration** – Manage platform settings.  
+- **User Management** – Oversee doctors, patients, and appointments.  
+- **Reports & Analytics** – Monitor platform usage and appointment trends.  
+- **System Configuration** – Manage platform settings.  
 
 ## Tech Stack  
 - **Frontend**: React.js, SCSS 
